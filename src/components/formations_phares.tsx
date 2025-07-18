@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 
 const formations = [
@@ -21,7 +23,7 @@ const formations = [
 
 export default function NosFormationsPhares() {
   return (
-    <section className="py-12 px-4 bg-gray-100">
+    <section className="py-12 px-4 bg-white shadow-top">
       <h2 className="text-3xl font-bold text-center mb-10">Nos formations phares</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {formations.map((formation, index) => (
@@ -34,6 +36,11 @@ export default function NosFormationsPhares() {
           </div>
         ))}
       </div>
+      <style jsx>{`
+       .shadow-top {
+          box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+    `}</style>
     </section>
   );
 }

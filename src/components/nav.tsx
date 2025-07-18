@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <nav className="bg-gradient-to-r from-violet-300 to-purple-700 shadow-lg">
+    <nav className="bg-sky-300 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo à gauche */}
@@ -22,19 +22,19 @@ export default function Navbar() {
             <div className="ml-10 flex items-baseline space-x-8">
               <a 
                 href="/formation" 
-                className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-purple-900/50"
+                className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-sky-900/50"
               >
                 Formation
               </a>
               <a 
                 href="/contact" 
-                className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-purple-900/50"
+                className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-sky-900/50"
               >
                 Contact
               </a>
               <a 
                 href="/a-propos" 
-                className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-purple-900/50"
+                className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-sky-900/50"
               >
                 À propos
               </a>
