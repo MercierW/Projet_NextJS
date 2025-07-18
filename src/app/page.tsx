@@ -1,7 +1,10 @@
-import Image from "next/image";
-import Navbar from "@/components/nav";
-import Carousel from "@/components/carousel";
-import NosFormationsPhares from "@/components/formations_phares";
+import Navbar from "@/components/Nav";
+import Footer from "@/components/Footer";
+import Carousel from "@/components/Carousel";
+import Actualites from "@/components/Actualites";
+import PartnersCarousel from "@/components/Partners";
+import QualiopiCertification from "@/components/Qualiopi";
+import NosFormationsPhares from "@/components/Formations_phares";
 
 export default function Home() {
   return (
@@ -10,10 +13,11 @@ export default function Home() {
       <main>
        <Carousel />
        <NosFormationsPhares />
+       <Actualites />
+       <QualiopiCertification />
+       <PartnersCarousel />
       </main>
-      <footer>
-        
-      </footer>
+      <Footer></Footer>
     </div>
   );
 }

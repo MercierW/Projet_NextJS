@@ -1,15 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   const slides = [
     {
       id: 1,
       title: "Formation HCR",
-      description: "Formez-vous aux métiers de l’Hôtellerie-Restauration : service, accueil, hygiène et savoir-être pour réussir dans un secteur dynamique et en recrutement.",
+      description: "Formez-vous aux métiers de l'Hôtellerie-Restauration : service, accueil, hygiène et savoir-être pour réussir dans un secteur dynamique et en recrutement.",
       image: "/img_01.png"
     },
     {
@@ -21,16 +22,27 @@ export default function Carousel() {
     {
       id: 3,
       title: "Formation ESF",
-      description: "Devenez un acteur du lien social : formez-vous pour accompagner les publics dans la gestion du quotidien, la prévention et l’insertion.",
+      description: "Devenez un acteur du lien social : formez-vous pour accompagner les publics dans la gestion du quotidien, la prévention et l'insertion.",
       image: "/img_11.png"
     },
     {
       id: 4,
       title: "Formation CDUI",
-      description: "Alliez créativité et technologie : maîtrisez le design d’interface et l’ergonomie web pour créer des expériences utilisateurs impactantes.",
+      description: "Alliez créativité et technologie : maîtrisez le design d'interface et l'ergonomie web pour créer des expériences utilisateurs impactantes.",
       image: "/img_10.png"
     }
   ];
+
+  // Auto-défilement avec pause au survol
+  useEffect(() => {
+    if (isHovered) return; // Ne pas défiler si survolé
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4000); // Change de slide toutes les 4 secondes
+
+    return () => clearInterval(interval); // Nettoie l'intervalle
+  }, [slides.length, isHovered]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -47,17 +59,21 @@ export default function Carousel() {
     image: string;
   }
 
-  const goToSlide = (index: number): void => {
+  const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Nouveautés</h2>
+      <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Nouveautés 2025</h2>
       
       <div className="relative">
         {/* Carousel Container */}
-        <div className="overflow-hidden rounded-lg shadow-lg bg-gray-200">
+        <div 
+          className="overflow-hidden rounded-lg shadow-lg bg-gray-200"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <div 
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -105,7 +121,7 @@ export default function Carousel() {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-colors ${
+              className={`w-3 h-3 rounded-full transition-colors cursor-pointer ${
                 index === currentSlide 
                   ? 'bg-orange-500' 
                   : 'bg-gray-300 hover:bg-gray-400'
