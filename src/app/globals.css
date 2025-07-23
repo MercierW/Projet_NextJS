@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #c8e1f8d8;
+  --background: #c8e1f8e6;
   --foreground: #171717;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -20,5 +20,5 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Matangi, Arial, Helvetica, sans-serif;
-  background-image: url(/bg_01.png);
+  /* background-image: url(/visage_01.png); */
 }

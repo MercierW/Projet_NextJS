@@ -39,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable} ${matangi.variable} antialiased bg-blend-lighten`}
+        className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable} ${matangi.variable} antialiased`}
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}

@@ -1,3 +1,4 @@
+import Hero from "@/components/Hero";
 import Navbar from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Carousel from "@/components/Carousel";
@@ -11,6 +12,7 @@ export default function Home() {
     <div>
       <Navbar />
       <main>
+        <Hero />
        <Carousel />
        <NosFormationsPhares />
        <Actualites />
