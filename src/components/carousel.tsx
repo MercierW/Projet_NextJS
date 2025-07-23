@@ -74,9 +74,9 @@ export default function Carousel() {
   };
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <section className="relative w-full overflow-hidden">
       {/* Background avec dégradé animé */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${slides[currentSlide].bgColor} transition-all duration-1000 ease-in-out`} />
+      <div className={`absolute inset-0 bg-sky-50`} />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header avec animation */}
@@ -94,7 +94,7 @@ export default function Carousel() {
               Découvrez
             </span>
             <br />
-            <span className="text-gray-800">Nos Formations</span>
+            <span className="text-gray-800 text-4xl">Nos Nouvelles Formations</span>
           </h2>
           
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -153,10 +153,10 @@ export default function Carousel() {
                         </p>
                         
                         <div className="flex space-x-4 pt-4">
-                          <button className={`px-8 py-3 bg-gradient-to-r ${slide.color} text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300`}>
+                          <button className={`px-8 py-3 bg-gradient-to-r ${slide.color} text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer`}>
                             En savoir plus
                           </button>
-                          <button className="px-8 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-full hover:border-gray-400 hover:bg-gray-50 transition-all duration-300">
+                          <button className="px-8 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-full hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 cursor-pointer">
                             Télécharger la brochure
                           </button>
                         </div>
@@ -170,7 +170,7 @@ export default function Carousel() {
             {/* Navigation Arrows */}
             <button
               onClick={prevSlide}
-              className="absolute left-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 z-30 group"
+              className="absolute left-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 z-30 group cursor-pointer"
             >
               <svg className="w-6 h-6 text-gray-700 mx-auto group-hover:text-gray-900 transform group-hover:-translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
@@ -179,7 +179,7 @@ export default function Carousel() {
 
             <button
               onClick={nextSlide}
-              className="absolute right-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 z-30 group"
+              className="absolute right-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 z-30 group cursor-pointer"
             >
               <svg className="w-6 h-6 text-gray-700 mx-auto group-hover:text-gray-900 transform group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
@@ -226,6 +226,6 @@ export default function Carousel() {
           <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

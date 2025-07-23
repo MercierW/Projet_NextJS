@@ -7,6 +7,7 @@ import PartnersCarousel from "@/components/Partners";
 import QualiopiCertification from "@/components/Qualiopi";
 import NosFormationsPhares from "@/components/Formations_phares";
 
+
 export default function Home() {
   return (
     <div>
