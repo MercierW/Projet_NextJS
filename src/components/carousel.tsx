@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -75,8 +76,51 @@ export default function Carousel() {
 
   return (
     <section className="relative w-full overflow-hidden">
-      {/* Background avec dégradé animé */}
+      {/* Background */}
       <div className={`absolute inset-0 bg-sky-50`} />
+      {/* Ronds animés autour du carousel */}
+<div className="absolute inset-0 overflow-hidden z-0">
+  <motion.div
+    className="absolute top-10 left-4 w-40 h-40 bg-blue-100 rounded-full opacity-70"
+    animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
+    transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+  />
+  <motion.div
+    className="absolute bottom-16 left-10 w-32 h-32 bg-green-100 rounded-full opacity-70"
+    animate={{ x: [0, -25, 0], y: [0, 30, 0] }}
+    transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+  />
+  <motion.div
+    className="absolute top-28 right-20 w-28 h-28 bg-red-100 rounded-full opacity-70"
+    animate={{ x: [0, 15, 0], y: [0, -35, 0] }}
+    transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+  />
+  <motion.div
+    className="absolute top-10 right-1/4 w-36 h-36 bg-blue-100 rounded-full opacity-70"
+    animate={{ x: [0, -30, 0], y: [0, 15, 0] }}
+    transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+  />
+  <motion.div
+    className="absolute bottom-10 right-10 w-48 h-48 bg-green-100 rounded-full opacity-70"
+    animate={{ x: [0, 18, 0], y: [0, -28, 0] }}
+    transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut' }}
+  />
+  <motion.div
+    className="absolute top-2/3 left-5 w-24 h-24 bg-red-100 rounded-full opacity-70"
+    animate={{ x: [0, -12, 0], y: [0, 22, 0] }}
+    transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+  />
+  <motion.div
+    className="absolute top-1/4 right-2 w-36 h-36 bg-blue-100 rounded-full opacity-70"
+    animate={{ x: [0, 22, 0], y: [0, -18, 0] }}
+    transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+  />
+  <motion.div
+    className="absolute top-10 left-1/3 w-20 h-20 bg-green-100 rounded-full opacity-70"
+    animate={{ x: [0, -10, 0], y: [0, 26, 0] }}
+    transition={{ duration: 17, repeat: Infinity, ease: 'easeInOut' }}
+  />
+</div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header avec animation */}
@@ -90,7 +134,7 @@ export default function Carousel() {
           </div>
           
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-pink-600 to-purple-600 animate-pulse">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-pink-600 to-purple-600">
               Découvrez
             </span>
             <br />
@@ -138,8 +182,8 @@ export default function Carousel() {
                       </div>
                     </div>
 
-                    {/* Content Section */}
-                    <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
+                    {/* Content Section - Ajustement de la largeur pour éviter les flèches */}
+                    <div className="lg:w-1/2 p-8 lg:pl-12 lg:pr-20 flex flex-col justify-center">
                       <div className="space-y-6">
                         <div>
                           <h3 className={`text-4xl lg:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r ${slide.color} leading-tight`}>
@@ -152,7 +196,7 @@ export default function Carousel() {
                           {slide.description}
                         </p>
                         
-                        <div className="flex space-x-4 pt-4">
+                        <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
                           <button className={`px-8 py-3 bg-gradient-to-r ${slide.color} text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer`}>
                             En savoir plus
                           </button>

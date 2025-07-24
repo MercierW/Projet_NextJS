@@ -1,9 +1,22 @@
 'use client';
 
-import { JSX } from 'react';
-import { motion } from 'framer-motion';
+import { JSX, useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function HeroSection(): JSX.Element {
+  const [showIndicator, setShowIndicator] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setShowIndicator(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-sky-50">
       {/* Animated background circles */}
@@ -53,7 +66,7 @@ export default function HeroSection(): JSX.Element {
       {/* Main content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-6 leading-tight">
-          <span className="bg-gradient-to-r from-indigo-600 to-purple-400 bg-clip-text text-transparent">L</span>a{' '} 
+          <span className="bg-gradient-to-r from-indigo-600 to-purple-400 bg-clip-text text-transparent">L</span>a{' '}
           <span className="bg-gradient-to-r from-red-600 to-rose-400 bg-clip-text text-transparent">G</span>ande{' '}
           <span className="bg-gradient-to-r from-emerald-600 to-teal-400 bg-clip-text text-transparent">C</span>lasse
         </h1>
@@ -74,11 +87,21 @@ export default function HeroSection(): JSX.Element {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-18 left-1/2 transform -translate-x-1/2 text-gray-400">
-        <div className="flex flex-col items-center animate-bounce">
-          <div className="w-1 h-8 bg-gradient-to-b from-transparent via-gray-300 to-transparent rounded-full"></div>
-        </div>
-      </div>
+      <AnimatePresence>
+        {showIndicator && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.5 }}
+            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-gray-500 z-10"
+          >
+            <div className="flex flex-col items-center animate-bounce">
+              <div className="w-2 h-12 bg-gradient-to-b from-transparent via-gray-400 to-transparent rounded-full"></div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
