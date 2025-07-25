@@ -13,7 +13,7 @@ export default function Home() {
     <div>
       <Navbar />
       <main>
-        <Hero />
+       <Hero />
        <Carousel />
        <NosFormationsPhares />
        <Actualites />

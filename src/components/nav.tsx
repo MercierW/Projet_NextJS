@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link'
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -40,13 +41,13 @@ export default function Navbar() {
           {/* Liens à droite */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <a
+              <Link
                 href="/formation"
                 className="relative inline-block text-white py-2 text-sm font-medium group hover:text-gray-200 transition-colors"
               >
                 Formation
                 <span className="absolute left-1/2 bottom-0 h-0.5 bg-white w-0 transition-all duration-300 group-hover:w-full transform -translate-x-1/2"></span>
-              </a>
+              </Link>
 
               <a
                 href="/contact"
