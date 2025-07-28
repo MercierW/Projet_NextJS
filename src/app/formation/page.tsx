@@ -1,6 +1,7 @@
 import { ArrowLeft, BookOpen, Clock, Users, Award } from 'lucide-react'
 import Navbar from '@/components/Nav'
 import Footer from "@/components/Footer";
+import Image from 'next/image';
 
 export default function FormationPage() {
   const formationThemes = {
@@ -17,30 +18,33 @@ export default function FormationPage() {
       formations: [
         {
           id: 1,
-          title: "Chef de Cuisine Professionnel",
-          description: "Maîtrisez les techniques culinaires avancées et la gestion d'une brigade en cuisine",
-          duration: "16 semaines",
-          level: "Avancé",
-          participants: 12,
-          price: "2 200€"
+          title: "Formation HCR : Service en salle et accueil client",
+          description: "Apprenez les bases du service en salle, de l’accueil client et des bonnes pratiques en hôtellerie et restauration.",
+          duration: "10 semaines",
+          open: "Session Ouverte",
+          participants: 15,
+          price: "1 800€",
+          image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=600&h=300&fit=crop&crop=entropy&auto=format&q=80"
         },
         {
           id: 2,
-          title: "Service en Salle et Sommellerie",
-          description: "Excellence du service client et connaissance des vins pour une expérience gastronomique parfaite",
-          duration: "10 semaines",
-          level: "Intermédiaire",
-          participants: 20,
-          price: "1 400€"
+          title: "Formation PSR : Production et Service en Restauration",
+          description: "Apprenez les techniques de préparation, de remise en température et de service en restauration collective ou rapide.",
+          duration: "12 semaines",
+          open: "Session Ouverte",
+          participants: 14,
+          price: "1 600€",
+          image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600&h=300&fit=crop&crop=entropy&auto=format&q=80"
         },
         {
           id: 3,
-          title: "Hygiène et Sécurité Alimentaire",
-          description: "Formation HACCP et bonnes pratiques d'hygiène en restauration commerciale",
-          duration: "2 semaines",
-          level: "Débutant",
-          participants: 30,
-          price: "450€"
+          title: "Formation CSR : Commercialisation et Services en Restauration",
+          description: "Développez vos compétences en accueil client, service en salle, techniques de vente et mise en valeur de l'offre de restauration.",
+          duration: "14 semaines",
+          open: "Session Fermée",
+          participants: 12,
+          price: "1 900€",
+          image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=300&fit=crop&auto=format&q=80"
         }
       ]
     },
@@ -57,30 +61,33 @@ export default function FormationPage() {
       formations: [
         {
           id: 4,
-          title: "Gestionnaire de Paie",
-          description: "Maîtrisez le calcul des salaires, les déclarations sociales et la législation du travail",
+          title: "Formation Employé(e) Administratif(ve) et d’Accueil",
+          description: "Apprenez les bases de l’accueil, de la gestion administrative et de la communication professionnelle.",
           duration: "14 semaines",
-          level: "Intermédiaire",
-          participants: 25,
-          price: "1 800€"
+          open: "Session Ouverte",
+          participants: 12,
+          price: "1 950€",
+          image: "https://images.unsplash.com/photo-1581091012184-7e0cdfbb6791?w=600&h=300&fit=crop&auto=format&q=80"
         },
         {
           id: 5,
-          title: "Assistant(e) de Direction",
-          description: "Développez vos compétences en organisation, communication et gestion administrative",
+          title: "Assistant(e) Comptable",
+          description: "Acquérez les bases de la comptabilité, la gestion des écritures et le suivi administratif des comptes",
           duration: "12 semaines",
-          level: "Intermédiaire",
+          open: "Session Ouverte",
           participants: 20,
-          price: "1 500€"
+          price: "1 500€",
+          image: "/images/formations/assistant-comptable.jpg"
         },
         {
           id: 6,
-          title: "Comptabilité et Fiscalité",
-          description: "Formation complète en comptabilité générale et déclarations fiscales",
-          duration: "18 semaines",
-          level: "Débutant",
-          participants: 30,
-          price: "2 000€"
+          title: "Gestion Comptable et Fiscale",
+          description: "Maîtrisez les principes de la comptabilité, la fiscalité d’entreprise et les obligations légales",
+          duration: "12 semaines",
+          open: "Session Fermée",
+          participants: 20,
+          price: "1 500€",
+          image: "/images/formations/gestion-comptable-fiscale.jpg"
         }
       ]
     },
@@ -97,30 +104,33 @@ export default function FormationPage() {
       formations: [
         {
           id: 7,
-          title: "Accompagnement Social et Familial",
-          description: "Techniques d'accompagnement et de soutien aux familles en difficulté",
-          duration: "20 semaines",
-          level: "Intermédiaire",
-          participants: 18,
-          price: "2 400€"
+          title: "Formation ESF : Économie Sociale et Familiale",
+          description: "Formez-vous à l’accompagnement des publics dans les domaines du quotidien : alimentation, logement et insertion sociale.",
+          duration: "16 semaines",
+          open: "Session Ouverte",
+          participants: 10,
+          price: "2 000 €",
+          image: "https://images.unsplash.com/photo-1593642532973-d31b6557fa68?w=600&h=300&fit=crop&auto=format&q=80"
         },
         {
           id: 8,
           title: "Aide à la Personne",
           description: "Formation aux soins d'hygiène et de confort pour personnes dépendantes",
           duration: "8 semaines",
-          level: "Débutant",
+          open: "Débutant",
           participants: 25,
-          price: "1 200€"
+          price: "1 200€",
+          image: "/images/formations/aide-personne.jpg"
         },
         {
           id: 9,
           title: "Médiation et Résolution de Conflits",
           description: "Techniques de médiation pour résoudre les conflits sociaux et familiaux",
           duration: "6 semaines",
-          level: "Avancé",
+          open: "Avancé",
           participants: 15,
-          price: "900€"
+          price: "900€",
+          image: "/images/formations/mediation.jpg"
         }
       ]
     },
@@ -140,27 +150,30 @@ export default function FormationPage() {
           title: "Leadership et Gestion d'Équipe",
           description: "Développez vos compétences de leader et apprenez à motiver vos équipes",
           duration: "10 semaines",
-          level: "Intermédiaire",
+          open: "Intermédiaire",
           participants: 20,
-          price: "1 600€"
+          price: "1 600€",
+          image: "/images/formations/leadership.jpg"
         },
         {
           id: 11,
           title: "Gestion de Projet Agile",
           description: "Maîtrisez les méthodologies Scrum et Kanban pour gérer vos projets efficacement",
           duration: "8 semaines",
-          level: "Intermédiaire",
+          open: "Intermédiaire",
           participants: 25,
-          price: "1 300€"
+          price: "1 300€",
+          image: "/images/formations/gestion-projet.jpg"
         },
         {
           id: 12,
           title: "Ressources Humaines et Recrutement",
           description: "Techniques de recrutement, gestion des talents et développement RH",
           duration: "12 semaines",
-          level: "Avancé",
+          open: "Avancé",
           participants: 18,
-          price: "1 800€"
+          price: "1 800€",
+          image: "/images/formations/ressources-humaines.jpg"
         }
       ]
     },
@@ -180,27 +193,30 @@ export default function FormationPage() {
           title: "Développement Web Full-Stack",
           description: "Apprenez React, Next.js, Node.js et TypeScript pour créer des applications complètes",
           duration: "16 semaines",
-          level: "Intermédiaire",
+          open: "Intermédiaire",
           participants: 25,
-          price: "2 500€"
+          price: "2 500€",
+          image: "/images/formations/dev-fullstack.jpg"
         },
         {
           id: 14,
           title: "UI/UX Design",
           description: "Créez des interfaces utilisateur modernes et intuitives avec Figma et les dernières tendances",
           duration: "12 semaines",
-          level: "Débutant",
+          open: "Débutant",
           participants: 20,
-          price: "1 800€"
+          price: "1 800€",
+          image: "/images/formations/ui-ux-design.jpg"
         },
         {
           id: 15,
           title: "DevOps et Cloud Computing",
           description: "Maîtrisez Docker, Kubernetes, AWS et l'automatisation des déploiements",
           duration: "14 semaines",
-          level: "Avancé",
+          open: "Avancé",
           participants: 15,
-          price: "2 200€"
+          price: "2 200€",
+          image: "/images/formations/devops-cloud.jpg"
         }
       ]
     }
@@ -263,16 +279,30 @@ export default function FormationPage() {
               {/* Grille des formations */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {theme.formations.map((formation) => (
-                  <div key={formation.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div className={`h-48 bg-gradient-to-br ${theme.colors.primary} relative`}>
-                      <div className="absolute inset-0 bg-black bg-opacity-10"></div>
-                      <div className="absolute top-4 right-4">
-                        <span className="text-3xl">{theme.icon}</span>
+                  <div key={formation.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div className="h-48 relative overflow-hidden">
+                      {/* Image avec effet de zoom */}
+                      <Image
+                        src={formation.image}
+                        alt={formation.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                      
+                      {/* Overlay avec gradient pour améliorer la lisibilité */}
+                      <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent`}></div>
+                      
+                      {/* Icône du thème */}
+                      <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2">
+                        <span className="text-2xl">{theme.icon}</span>
                       </div>
-                      <div className="absolute bottom-4 left-4 text-white">
-                        <div className={`inline-block ${theme.colors.badge} bg-opacity-80 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium`}>
-                          {formation.level}
-                        </div>
+                      
+                      {/* Badge niveau */}
+                      <div className="absolute bottom-4 left-4">
+                        <span className={`inline-block ${theme.colors.badge} bg-opacity-90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium text-white`}>
+                          {formation.open}
+                        </span>
                       </div>
                     </div>
                     
