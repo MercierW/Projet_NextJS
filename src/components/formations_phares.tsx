@@ -34,7 +34,7 @@ export default function NosFormationsPhares() {
         {/* Cercles flottants */}
         <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-teal-100 to-teal-200 rounded-full opacity-30 animate-pulse"></div>
         <div className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-lime-100 to-lime-200 rounded-full opacity-40 animate-pulse"></div>
-        
+
         {/* Formes géométriques */}
         <div className="absolute top-16 right-1/4 w-16 h-16 bg-gradient-to-br from-blue-200 to-sky-200 transform rotate-45 opacity-25 animate-pulse"></div>
         <div className="absolute bottom-20 right-16 w-12 h-12 bg-gradient-to-br from-red-200 to-rose-200 transform rotate-12 opacity-30 animate-pulse"></div>
@@ -65,21 +65,21 @@ export default function NosFormationsPhares() {
             Découvrez nos formations populaires et donnez un nouvel élan à votre carrière.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {formations.map((formation, index) => (
             <Link href={formation.slug} key={index} className="group block">
               <div className="formation-card relative bg-white hover:bg-gradient-to-br hover:from-blue-50 hover:to-teal-50 shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2 h-full flex flex-col border border-gray-100 hover:border-teal-200">
                 {/* Effet de brillance au survol */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-2xl pointer-events-none"></div>
-                
+
                 <h3 className="relative text-xl font-bold mb-3 text-gray-800 group-hover:text-teal-700 transition-colors duration-300">
                   {formation.title}
                 </h3>
                 <p className="relative text-gray-600 flex-grow group-hover:text-gray-700 transition-colors duration-300">
                   {formation.description}
                 </p>
-                
+
                 {/* Indicateur visuel */}
                 <div className="mt-4 flex items-center text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="text-sm font-semibold">Découvrir</span>
@@ -92,22 +92,6 @@ export default function NosFormationsPhares() {
           ))}
         </div>
       </div>
-      
-      <style jsx>{`
-        .shadow-top {
-          box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        
-        .formation-card {
-          transform-origin: center bottom;
-          backdrop-filter: blur(10px);
-        }
-        
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-        }
-      `}</style>
     </section>
   );
 }

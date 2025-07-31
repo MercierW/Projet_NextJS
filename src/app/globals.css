@@ -20,5 +20,65 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Matangi, Arial, Helvetica, sans-serif;
-  /* background-image: url(/visage_01.png); */
+}
+
+/* Composant à propos */
+
+.checkmark {
+  width: 12px;
+  height: 6px;
+  border-left: 2px solid #16a34a;
+  border-bottom: 2px solid #16a34a;
+  transform: rotate(-45deg);
+  display: inline-block;
+  margin-top: 0.25rem;
+}
+
+/* Composant Nos formations phares */
+
+.formation-card {
+  transform-origin: center bottom;
+  backdrop-filter: blur(10px);
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Composant Carousel */
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+}
+
+.carousel-item {
+  flex-shrink: 0;
+  margin: 0 1.5rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 90s linear infinite;
+}
+
+.group:hover .animate-scroll {
+  animation-play-state: paused;
 }

@@ -1,5 +1,6 @@
-import Navbar from '@/components/Nav'
+import Navbar from '@/components/Nav';
 import Footer from "@/components/Footer";
+import Google_map from '@/components/Google_map';
 
 
 export default function ContactPage() {
@@ -8,7 +9,7 @@ export default function ContactPage() {
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
             <Navbar />
             <main className="min-h-screen bg-gradient-to-br from-blue-50 to-violet-200 py-30 px-4 sm:px-8 lg:px-24">
-                <div className="max-w-4xl mx-auto">
+                <section className="max-w-3xl mx-auto">
                     <h1 className="text-4xl font-bold text-violet-800 mb-4">Nous contacter</h1>
                     <p className="text-gray-600 text-lg mb-12">
                         Une question, un besoin d'information ? Notre équipe est là pour vous accompagner.
@@ -71,7 +72,8 @@ export default function ContactPage() {
                             Envoyer
                         </button>
                     </form>
-                </div>
+                </section>
+                <Google_map />
             </main>
             <Footer />
         </div>

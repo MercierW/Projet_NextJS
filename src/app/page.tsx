@@ -20,7 +20,7 @@ export default function Home() {
        <QualiopiCertification />
        <PartnersCarousel />
       </main>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }

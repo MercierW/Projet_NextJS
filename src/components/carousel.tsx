@@ -79,49 +79,49 @@ export default function Carousel() {
       {/* Background */}
       <div className={`absolute inset-0 bg-sky-50`} />
       {/* Ronds animés autour du carousel */}
-<div className="absolute inset-0 overflow-hidden z-0">
-  <motion.div
-    className="absolute top-10 left-4 w-40 h-40 bg-blue-100 rounded-full opacity-70"
-    animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
-    transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-  />
-  <motion.div
-    className="absolute bottom-16 left-10 w-32 h-32 bg-green-100 rounded-full opacity-70"
-    animate={{ x: [0, -25, 0], y: [0, 30, 0] }}
-    transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-  />
-  <motion.div
-    className="absolute top-28 right-20 w-28 h-28 bg-red-100 rounded-full opacity-70"
-    animate={{ x: [0, 15, 0], y: [0, -35, 0] }}
-    transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-  />
-  <motion.div
-    className="absolute top-10 right-1/4 w-36 h-36 bg-blue-100 rounded-full opacity-70"
-    animate={{ x: [0, -30, 0], y: [0, 15, 0] }}
-    transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-  />
-  <motion.div
-    className="absolute bottom-10 right-10 w-48 h-48 bg-green-100 rounded-full opacity-70"
-    animate={{ x: [0, 18, 0], y: [0, -28, 0] }}
-    transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut' }}
-  />
-  <motion.div
-    className="absolute top-2/3 left-5 w-24 h-24 bg-red-100 rounded-full opacity-70"
-    animate={{ x: [0, -12, 0], y: [0, 22, 0] }}
-    transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
-  />
-  <motion.div
-    className="absolute top-1/4 right-2 w-36 h-36 bg-blue-100 rounded-full opacity-70"
-    animate={{ x: [0, 22, 0], y: [0, -18, 0] }}
-    transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-  />
-  <motion.div
-    className="absolute top-10 left-1/3 w-20 h-20 bg-green-100 rounded-full opacity-70"
-    animate={{ x: [0, -10, 0], y: [0, 26, 0] }}
-    transition={{ duration: 17, repeat: Infinity, ease: 'easeInOut' }}
-  />
-</div>
-      
+      <div className="absolute inset-0 overflow-hidden z-0">
+        <motion.div
+          className="absolute top-10 left-4 w-40 h-40 bg-blue-100 rounded-full opacity-70"
+          animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute bottom-16 left-10 w-32 h-32 bg-green-100 rounded-full opacity-70"
+          animate={{ x: [0, -25, 0], y: [0, 30, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute top-28 right-20 w-28 h-28 bg-red-100 rounded-full opacity-70"
+          animate={{ x: [0, 15, 0], y: [0, -35, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute top-10 right-1/4 w-36 h-36 bg-blue-100 rounded-full opacity-70"
+          animate={{ x: [0, -30, 0], y: [0, 15, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute bottom-10 right-10 w-48 h-48 bg-green-100 rounded-full opacity-70"
+          animate={{ x: [0, 18, 0], y: [0, -28, 0] }}
+          transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute top-2/3 left-5 w-24 h-24 bg-red-100 rounded-full opacity-70"
+          animate={{ x: [0, -12, 0], y: [0, 22, 0] }}
+          transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute top-1/4 right-2 w-36 h-36 bg-blue-100 rounded-full opacity-70"
+          animate={{ x: [0, 22, 0], y: [0, -18, 0] }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute top-10 left-1/3 w-20 h-20 bg-green-100 rounded-full opacity-70"
+          animate={{ x: [0, -10, 0], y: [0, 26, 0] }}
+          transition={{ duration: 17, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </div>
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header avec animation */}
         <div className="text-center mb-16">
@@ -132,7 +132,7 @@ export default function Carousel() {
               <div className="w-2 h-2 bg-gradient-to-r from-pink-400 to-orange-400 rounded-full animate-pulse"></div>
             </div>
           </div>
-          
+
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-pink-600 to-purple-600">
               Découvrez
@@ -140,16 +140,16 @@ export default function Carousel() {
             <br />
             <span className="text-gray-800 text-4xl">Nos Nouvelles Formations</span>
           </h2>
-          
+
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Avec <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-pink-600">La Grande Classe</span>, 
+            Avec <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-pink-600">La Grande Classe</span>,
             transformez votre passion en expertise professionnelle
           </p>
         </div>
 
         {/* Carousel Container */}
         <div className="relative">
-          <div 
+          <div
             className="relative overflow-hidden rounded-3xl shadow-2xl bg-white/10 backdrop-blur-md border border-white/20"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -159,20 +159,19 @@ export default function Carousel() {
               {slides.map((slide, index) => (
                 <div
                   key={slide.id}
-                  className={`absolute inset-0 transition-all duration-700 ease-in-out transform ${
-                    index === currentSlide 
-                      ? 'opacity-100 translate-x-0 scale-100' 
-                      : index < currentSlide 
-                        ? 'opacity-0 -translate-x-full scale-95' 
+                  className={`absolute inset-0 transition-all duration-700 ease-in-out transform ${index === currentSlide
+                      ? 'opacity-100 translate-x-0 scale-100'
+                      : index < currentSlide
+                        ? 'opacity-0 -translate-x-full scale-95'
                         : 'opacity-0 translate-x-full scale-95'
-                  }`}
+                    }`}
                 >
                   <div className="flex flex-col lg:flex-row h-full">
                     {/* Image Section */}
                     <div className="lg:w-1/2 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40 z-10"></div>
-                      <img 
-                        src={slide.image} 
+                      <img
+                        src={slide.image}
                         alt={slide.title}
                         className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
                       />
@@ -191,11 +190,11 @@ export default function Carousel() {
                           </h3>
                           <div className={`w-24 h-1 bg-gradient-to-r ${slide.color} rounded-full mb-6`}></div>
                         </div>
-                        
+
                         <p className="text-gray-700 text-lg leading-relaxed">
                           {slide.description}
                         </p>
-                        
+
                         <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
                           <button className={`px-8 py-3 bg-gradient-to-r ${slide.color} text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer`}>
                             En savoir plus
@@ -239,11 +238,10 @@ export default function Carousel() {
                 onClick={() => goToSlide(index)}
                 className="group relative"
               >
-                <div className={`w-4 h-4 rounded-full transition-all duration-300 ${
-                  index === currentSlide 
-                    ? `bg-gradient-to-r ${slide.color} shadow-lg scale-125` 
+                <div className={`w-4 h-4 rounded-full transition-all duration-300 ${index === currentSlide
+                    ? `bg-gradient-to-r ${slide.color} shadow-lg scale-125`
                     : 'bg-white/60 hover:bg-white/80 hover:scale-110'
-                }`} />
+                  }`} />
                 {index === currentSlide && (
                   <div className={`absolute inset-0 w-4 h-4 rounded-full bg-gradient-to-r ${slide.color} animate-ping opacity-30`} />
                 )}
@@ -253,9 +251,9 @@ export default function Carousel() {
 
           {/* Progress Bar */}
           <div className="mt-6 w-full bg-white/30 rounded-full h-1 overflow-hidden">
-            <div 
+            <div
               className={`h-full bg-gradient-to-r ${slides[currentSlide].color} transition-all duration-300 rounded-full`}
-              style={{ 
+              style={{
                 width: `${((currentSlide + 1) / slides.length) * 100}%`,
                 animation: isHovered ? 'none' : 'pulse 2s infinite'
               }}
