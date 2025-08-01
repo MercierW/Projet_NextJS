@@ -29,6 +29,9 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "LGC - La Grande Classe",
   description: "Site de formation la grande classe",
+  icons: {
+    icon: '/logo_v01.png',
+  },
 };
 
 export default function RootLayout({
@@ -39,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable} ${matangi.variable} antialiased bg-blend-lighten`}
+        className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable} ${matangi.variable} antialiased`}
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
