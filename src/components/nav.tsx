@@ -42,7 +42,7 @@ export default function Navbar() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               <Link
-                href="/formation"
+                href="/formations"
                 className="relative inline-block text-white py-2 text-sm font-medium group hover:text-gray-200 transition-colors"
               >
                 Formation
