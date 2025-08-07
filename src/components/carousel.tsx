@@ -1,78 +1,21 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { slides } from "@/lib/carousel";
+import { useCarousel } from "@/lib/hooks/useCarousel";
 
 export default function Carousel() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const slides = [
-    {
-      id: 1,
-      title: "Formation HCR",
-      description: "Formez-vous aux métiers de l'Hôtellerie-Restauration : service, accueil, hygiène et savoir-être pour réussir dans un secteur dynamique et en recrutement.",
-      image: "/img_01.png",
-      color: "from-orange-500 to-red-500",
-      bgColor: "from-orange-50 to-red-50"
-    },
-    {
-      id: 2,
-      title: "Formation AEPE",
-      description: "Préparez votre avenir dans la petite enfance : développez les compétences clés pour accompagner, éveiller et sécuriser les tout-petits au quotidien.",
-      image: "/img_08.png",
-      color: "from-pink-500 to-purple-500",
-      bgColor: "from-pink-50 to-purple-50"
-    },
-    {
-      id: 3,
-      title: "Formation ESF",
-      description: "Devenez un acteur du lien social : formez-vous pour accompagner les publics dans la gestion du quotidien, la prévention et l'insertion.",
-      image: "/img_11.png",
-      color: "from-blue-500 to-indigo-500",
-      bgColor: "from-blue-50 to-indigo-50"
-    },
-    {
-      id: 4,
-      title: "Formation CDUI",
-      description: "Alliez créativité et technologie : maîtrisez le design d'interface et l'ergonomie web pour créer des expériences utilisateurs impactantes.",
-      image: "/img_10.png",
-      color: "from-emerald-500 to-teal-500",
-      bgColor: "from-emerald-50 to-teal-50"
-    }
-  ];
-
-  // Auto-défilement avec pause au survol
-  useEffect(() => {
-    if (isHovered) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [slides.length, isHovered]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
-  interface Slide {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
-    color: string;
-    bgColor: string;
-  }
-
-  const goToSlide = (index: number): void => {
-    setCurrentSlide(index);
-  };
+  const {
+    currentSlide,
+    isHovered,
+    setIsHovered,
+    nextSlide,
+    prevSlide,
+    goToSlide
+  } = useCarousel({ 
+    slidesLength: slides.length,
+    autoPlayInterval: 5000 // optionnel, 5000ms par défaut
+  });
 
   return (
     <section className="relative w-full overflow-hidden">

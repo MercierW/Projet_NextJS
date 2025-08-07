@@ -1,78 +1,38 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-
-declare global {
-  interface Window {
-    google: any;
-    initMap: () => void;
-  }
-}
+import { useGoogleMaps } from '@/lib/hooks/useGoogleMaps';
 
 const Contact = () => {
-  const mapRef = useRef(null);
-  const mapInstanceRef = useRef(null);
+  // Configuration de la carte
+  const mapOptions = {
+    zoom: 15,
+    center: { lat: 48.8589, lng: 2.4472 }, // 51 Rue Gaston Lauriau, 93100 Montreuil
+    mapTypeControl: true,
+    streetViewControl: true,
+    fullscreenControl: true,
+    zoomControl: true,
+    rotateControl: true,
+    scaleControl: true,
+    draggable: true,
+    scrollwheel: true,
+    disableDoubleClickZoom: false,
+    keyboardShortcuts: true,
+  };
 
-  useEffect(() => {
-    const initMap = () => {
-      if (!mapRef.current || mapInstanceRef.current) return;
+  // Configuration des marqueurs
+  const markers = [
+    {
+      position: { lat: 48.8589, lng: 2.4472 },
+      title: '51 Rue Gaston Lauriau, 93100 Montreuil',
+      iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+      iconSize: { width: 32, height: 32 },
+    },
+  ];
 
-      // Coordonnées pour 51 Rue Gaston Lauriau, 93100 Montreuil
-      const location = { lat: 48.8589, lng: 2.4472 };
-
-      // Créer la carte avec navigation complète
-      const map = new window.google.maps.Map(mapRef.current, {
-        zoom: 15,
-        center: location,
-        mapTypeControl: true,
-        streetViewControl: true,
-        fullscreenControl: true,
-        zoomControl: true,
-        rotateControl: true,
-        scaleControl: true,
-        // Navigation activée
-        draggable: true,
-        scrollwheel: true,
-        disableDoubleClickZoom: false,
-        keyboardShortcuts: true,
-      });
-
-      // Ajouter le marqueur rouge
-      new window.google.maps.Marker({
-        position: location,
-        map: map,
-        title: '51 Rue Gaston Lauriau, 93100 Montreuil',
-        // Marqueur rouge standard
-        icon: {
-          url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
-          scaledSize: new window.google.maps.Size(32, 32),
-        },
-      });
-
-      mapInstanceRef.current = map;
-    };
-
-    // Charger l'API Google Maps
-    if (typeof window.google === 'undefined') {
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&callback=initMap`;
-      script.async = true;
-      script.defer = true;
-      
-      // Fonction callback globale
-      window.initMap = initMap;
-      
-      document.head.appendChild(script);
-    } else {
-      initMap();
-    }
-
-    return () => {
-      if (mapInstanceRef.current) {
-        mapInstanceRef.current = null;
-      }
-    };
-  }, []);
+  const { mapRef } = useGoogleMaps({
+    mapOptions,
+    markers,
+  });
 
   return (
     <section className="py-16 bg-gray-50 rounded-xl mt-20 shadow-xl">
