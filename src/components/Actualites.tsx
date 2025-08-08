@@ -37,7 +37,7 @@ export default function Actualites() {
                     alt={actu.title}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${actu.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}></div>
+                  <div className={`absolute inset-0 bg-gradient-to-t white opacity-20 group-hover:opacity-30 transition-opacity duration-300`}></div>
                   
                   {/* Badge catégorie */}
                   <div className="absolute top-4 left-4">
