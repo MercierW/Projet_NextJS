@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Calendar, ArrowRight, Newspaper, Users, Lightbulb } from "lucide-react";
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import Link from 'next/link';
 
 interface ActualiteData {
   id: number;
@@ -212,13 +213,13 @@ export default function Actualites() {
 
         {/* Section CTA */}
         <div className="text-center mt-12">
-          <a
-            href="/actualites"
+          <Link
+            href="/actu"
             className="inline-flex items-center px-8 py-4 bg-white text-indigo-600 font-semibold rounded-2xl shadow-lg hover:shadow-xl border-2 border-indigo-100 hover:border-indigo-200 transition-all duration-200 group"
           >
             Voir toutes les actualités
             <ArrowRight className="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
