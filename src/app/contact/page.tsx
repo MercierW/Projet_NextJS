@@ -61,59 +61,143 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-gray-700 font-medium mb-1">Nom</label>
-                <input name="nom" value={formData.nom} onChange={handleChange} type="text" className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none" required />
+                <input 
+                  name="nom" 
+                  value={formData.nom} 
+                  onChange={handleChange} 
+                  type="text" 
+                  placeholder="Votre nom de famille" 
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none placeholder-gray-400" 
+                  required 
+                />
               </div>
               <div>
                 <label className="block text-gray-700 font-medium mb-1">Prénom</label>
-                <input name="prenom" value={formData.prenom} onChange={handleChange} type="text" className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none" required />
+                <input 
+                  name="prenom" 
+                  value={formData.prenom} 
+                  onChange={handleChange} 
+                  type="text" 
+                  placeholder="Votre prénom" 
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none placeholder-gray-400" 
+                  required 
+                />
               </div>
               <div>
                 <label className="block text-gray-700 font-medium mb-1">Âge</label>
-                <input name="age" value={formData.age} onChange={handleChange} type="number" className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none" />
+                <input 
+                  name="age" 
+                  value={formData.age} 
+                  onChange={handleChange} 
+                  type="number" 
+                  placeholder="Votre âge" 
+                  min="16" 
+                  max="100"
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none placeholder-gray-400" 
+                />
               </div>
               <div>
                 <label className="block text-gray-700 font-medium mb-1">Email</label>
-                <input name="email" value={formData.email} onChange={handleChange} type="email" className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none" required />
+                <input 
+                  name="email" 
+                  value={formData.email} 
+                  onChange={handleChange} 
+                  type="email" 
+                  placeholder="votre.email@exemple.com" 
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none placeholder-gray-400" 
+                  required 
+                />
               </div>
               <div className="md:col-span-2">
                 <label className="block text-gray-700 font-medium mb-1">Adresse</label>
-                <input name="adresse" value={formData.adresse} onChange={handleChange} type="text" className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none" />
+                <input 
+                  name="adresse" 
+                  value={formData.adresse} 
+                  onChange={handleChange} 
+                  type="text" 
+                  placeholder="123 Rue de la Paix, 75001 Paris" 
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none placeholder-gray-400" 
+                />
               </div>
               <div>
                 <label className="block text-gray-700 font-medium mb-1">Date de naissance</label>
-                <input name="naissance" value={formData.naissance} onChange={handleChange} type="date" className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none" />
+                <input 
+                  name="naissance" 
+                  value={formData.naissance} 
+                  onChange={handleChange} 
+                  type="date" 
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none" 
+                />
               </div>
               <div>
                 <label className="block text-gray-700 font-medium mb-1">Pays de naissance</label>
-                <input name="pays" value={formData.pays} onChange={handleChange} type="text" className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none" />
+                <input 
+                  name="pays" 
+                  value={formData.pays} 
+                  onChange={handleChange} 
+                  type="text" 
+                  placeholder="France" 
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none placeholder-gray-400" 
+                />
               </div>
               <div>
                 <label className="block text-gray-700 font-medium mb-1">Nationalité</label>
-                <input name="nationalite" value={formData.nationalite} onChange={handleChange} type="text" className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none" />
+                <input 
+                  name="nationalite" 
+                  value={formData.nationalite} 
+                  onChange={handleChange} 
+                  type="text" 
+                  placeholder="Française" 
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none placeholder-gray-400" 
+                />
               </div>
               <div>
                 <label className="block text-gray-700 font-medium mb-1">Numéro de téléphone</label>
-                <input name="telephone" value={formData.telephone} onChange={handleChange} type="tel" className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none" />
+                <input 
+                  name="telephone" 
+                  value={formData.telephone} 
+                  onChange={handleChange} 
+                  type="tel" 
+                  placeholder="01 23 45 67 89" 
+                  pattern="[0-9\s\-\+\(\)]+"
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none placeholder-gray-400" 
+                />
               </div>
               <div className="md:col-span-2">
                 <label className="block text-gray-700 font-medium mb-1">Formation</label>
-                <select name="formation" value={formData.formation} onChange={handleChange} className="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-violet-400 focus:outline-none" required>
-                  <option value="">Choisissez une formation</option>
-                  <option value="HCR">Formation HCR</option>
-                  <option value="PSR">Formation PSR</option>
-                  <option value="AEPE">Formation AEPE</option>
-                  <option value="CDA">Formation CDA</option>
+                <select 
+                  name="formation" 
+                  value={formData.formation} 
+                  onChange={handleChange} 
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-violet-400 focus:outline-none text-gray-700" 
+                  required
+                >
+                  <option value="" disabled className="text-gray-400">Choisissez une formation</option>
+                  <option value="HCR">Formation HCR (Hôtellerie-Cafés-Restaurants)</option>
+                  <option value="PSR">Formation PSR (Production et Service en Restaurations collectives)</option>
+                  <option value="AEPE">Formation AEPE (Accompagnant Éducatif Petite Enfance)</option>
+                  <option value="CDA">Formation CDA (Conducteur du transport routier de marchandises sur Tous véhicules)</option>
                 </select>
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full bg-violet-400 text-white py-3 rounded-xl font-semibold hover:bg-violet-800 transition duration-300 tracking-widest cursor-pointer"
+              className="w-full bg-violet-400 text-white py-3 rounded-xl font-semibold hover:bg-violet-800 transition duration-300 tracking-widest cursor-pointer transform hover:scale-[1.02] active:scale-[0.98]"
             >
-              Envoyer
+              Envoyer ma demande
             </button>
-            {status && <p className="text-center text-sm mt-4 text-gray-700">{status}</p>}
+            {status && (
+              <div className={`text-center text-sm mt-4 p-3 rounded-xl ${
+                status.includes('succès') 
+                  ? 'bg-green-100 text-green-700 border border-green-200' 
+                  : status.includes('erreur') 
+                    ? 'bg-red-100 text-red-700 border border-red-200'
+                    : 'bg-blue-100 text-blue-700 border border-blue-200'
+              }`}>
+                {status}
+              </div>
+            )}
           </form>
         </section>
         <Google_map />
