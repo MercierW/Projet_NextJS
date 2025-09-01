@@ -170,11 +170,6 @@ export default function BlogEventsList() {
                                     className="object-cover transition-transform duration-300 hover:scale-105"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
-                                <div className="absolute top-4 left-4 z-10">
-                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 border border-indigo-200">
-                                        Article
-                                    </span>
-                                </div>
                             </div>
 
                             {/* Contenu de l'article */}
@@ -200,7 +195,7 @@ export default function BlogEventsList() {
                                 {/* Call to action */}
                                 <div className="mt-6">
                                     <Link
-                                        href={`/articles/${event.slug}`}
+                                        href={`/actu/${event.slug}`}
                                         className="group flex items-center justify-center w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium py-3 px-4 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 hover:shadow-md"
                                     >
                                         Lire l'article complet

@@ -12,6 +12,7 @@ interface ActualiteData {
   summary: string;
   link: string;
   image: string;
+  slug: string; // Ajout du slug dans l'interface
 }
 
 export default function Actualites() {
@@ -21,29 +22,16 @@ export default function Actualites() {
 
   const supabase = createClientComponentClient();
 
-  // Fonction pour déterminer l'icône et la couleur en fonction du contenu
-  const getCategoryInfo = (title: string, summary: string) => {
-    const content = (title + ' ' + summary).toLowerCase();
-    
-    if (content.includes('partenariat') || content.includes('collaboration') || content.includes('équipe')) {
-      return {
-        icon: Users,
-        category: 'Partenariat',
-        color: 'from-blue-500 to-cyan-500'
-      };
-    } else if (content.includes('innovation') || content.includes('nouveau') || content.includes('technologie')) {
-      return {
-        icon: Lightbulb,
-        category: 'Innovation',
-        color: 'from-yellow-500 to-orange-500'
-      };
-    } else {
-      return {
-        icon: Newspaper,
-        category: 'Actualités',
-        color: 'from-indigo-500 to-purple-500'
-      };
-    }
+  // Fonction pour générer un slug à partir du titre
+  const generateSlug = (title: string) => {
+    return title
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // Supprimer les accents
+      .replace(/[^a-z0-9\s-]/g, '') // Garder seulement lettres, chiffres, espaces et tirets
+      .trim()
+      .replace(/\s+/g, '-') // Remplacer espaces par tirets
+      .replace(/-+/g, '-'); // Éviter les tirets multiples
   };
 
   // Fonction pour formatter la date
@@ -78,7 +66,13 @@ export default function Actualites() {
         console.log('✅ Données récupérées:', data);
         console.log('📈 Nombre d\'articles:', data?.length);
         
-        setActualites(data || []);
+        // Ajouter le slug généré à chaque actualité
+        const actualitesWithSlug = data?.map(actu => ({
+          ...actu,
+          slug: generateSlug(actu.title)
+        })) || [];
+        
+        setActualites(actualitesWithSlug);
       } catch (err) {
         console.error('💥 Erreur lors du chargement des actualités:', err);
         setError(err instanceof Error ? err.message : 'Une erreur est survenue');
@@ -147,9 +141,6 @@ export default function Actualites() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {actualites.map((actu) => {
-            const categoryInfo = getCategoryInfo(actu.title, actu.summary);
-            const IconComponent = categoryInfo.icon;
-            
             return (
               <div
                 key={actu.id}
@@ -167,14 +158,6 @@ export default function Actualites() {
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
-                  
-                  {/* Badge catégorie */}
-                  <div className="absolute top-4 left-4">
-                    <div className={`inline-flex items-center px-3 py-1 rounded-full text-white text-sm font-medium bg-gradient-to-r ${categoryInfo.color} shadow-lg`}>
-                      <IconComponent className="w-4 h-4 mr-1" />
-                      {categoryInfo.category}
-                    </div>
-                  </div>
                 </div>
 
                 {/* Contenu */}
@@ -192,16 +175,16 @@ export default function Actualites() {
                     {actu.summary}
                   </p>
 
-                  {/* CTA Button */}
-                  <a
-                    href={actu.link}
+                  {/* CTA Button - Vous pouvez maintenant utiliser soit actu.link soit /actu/${actu.slug} */}
+                  <Link
+                    href={`/actu/${actu.slug}`} // Ou href={`/actu/${actu.slug}`} si vous voulez utiliser des liens internes
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl group/btn mt-auto"
                   >
                     Lire l'article
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover/btn:translate-x-1" />
-                  </a>
+                  </Link>
                 </div>
 
                 {/* Effet de brillance au hover */}

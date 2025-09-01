@@ -67,7 +67,7 @@ export default function HeroSection(): JSX.Element {
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-6 leading-tight">
           <span className="bg-gradient-to-r from-indigo-600 to-purple-400 bg-clip-text text-transparent">L</span>a{' '}
-          <span className="bg-gradient-to-r from-emerald-600 to-teal-400 bg-clip-text text-transparent">G</span>ande{' '}
+          <span className="bg-gradient-to-r from-emerald-600 to-teal-400 bg-clip-text text-transparent">G</span>rande{' '}
           <span className="bg-gradient-to-r from-red-600 to-rose-400 bg-clip-text text-transparent">C</span>lasse
         </h1>
 
