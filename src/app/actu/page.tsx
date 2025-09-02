@@ -1,44 +1,31 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { Calendar, ExternalLink } from 'lucide-react';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { prisma } from '@/lib/db';
+import type { Actualite } from '@prisma/client';
 
-interface BlogEvent {
-    id: number;
-    title: string;
-    summary: string;
-    date: string;
-    image: string;
-    link: string;
-    slug: string;
+// Fonction pour récupérer toutes les actualités
+async function getActualites(): Promise<Actualite[]> {
+    try {
+        const actualites = await prisma.actualite.findMany({
+            orderBy: { createdAt: 'desc' }
+        });
+        
+        return actualites;
+    } catch (error) {
+        console.error('Erreur lors de la récupération des actualités:', error);
+        return [];
+    }
 }
 
-export default function BlogEventsList() {
-    const [events, setEvents] = useState<BlogEvent[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+export default async function BlogEventsList() {
+    const events = await getActualites();
 
-    const supabase = createClientComponentClient();
-
-    // Fonction pour générer un slug à partir du titre
-    const generateSlug = (title: string) => {
-        return title
-            .toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '') // Supprimer les accents
-            .replace(/[^a-z0-9\s-]/g, '') // Garder seulement lettres, chiffres, espaces et tirets
-            .trim()
-            .replace(/\s+/g, '-') // Remplacer espaces par tirets
-            .replace(/-+/g, '-'); // Éviter les tirets multiples
-    };
-
-    const formatDate = (dateString: string) => {
-        return new Date(dateString).toLocaleDateString('fr-FR', {
+    const formatDate = (date: Date) => {
+        return date.toLocaleDateString('fr-FR', {
             day: 'numeric',
             month: 'long',
             year: 'numeric'
@@ -46,79 +33,10 @@ export default function BlogEventsList() {
     };
 
     // Fonction pour tronquer le texte
-    const truncateText = (text: string, maxLength: number = 60) => {
+    const truncateText = (text: string, maxLength: number = 150) => {
         if (text.length <= maxLength) return text;
         return text.substring(0, maxLength).trim() + '...';
     };
-
-    // Récupération des données depuis Supabase
-    useEffect(() => {
-        const fetchEvents = async () => {
-            try {
-                setLoading(true);
-                
-                const { data, error } = await supabase
-                    .from('articles')
-                    .select('*')
-                    .order('date', { ascending: false });
-
-                if (error) {
-                    console.error('❌ Erreur Supabase:', error);
-                    throw error;
-                }
-                
-                // Ajouter le slug généré à chaque article
-                const eventsWithSlug = data?.map(event => ({
-                    ...event,
-                    slug: generateSlug(event.title)
-                })) || [];
-                
-                setEvents(eventsWithSlug);
-                
-            } catch (err) {
-                console.error('💥 Erreur lors du chargement des événements:', err);
-                setError(err instanceof Error ? err.message : 'Une erreur est survenue');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchEvents();
-    }, [supabase]);
-
-    if (loading) {
-        return (
-            <div className="min-h-screen">
-                <Navbar />
-                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 pt-24">
-                    <div className="flex justify-center items-center min-h-[400px]">
-                        <div className="text-center">
-                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-                            <p className="text-gray-600">Chargement des événements...</p>
-                        </div>
-                    </div>
-                </main>
-                <Footer />
-            </div>
-        );
-    }
-
-    if (error) {
-        return (
-            <div className="min-h-screen">
-                <Navbar />
-                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 pt-24">
-                    <div className="flex justify-center items-center min-h-[400px]">
-                        <div className="bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-lg">
-                            <h3 className="font-medium mb-2">Erreur de chargement</h3>
-                            <p>{error}</p>
-                        </div>
-                    </div>
-                </main>
-                <Footer />
-            </div>
-        );
-    }
 
     if (events.length === 0) {
         return (
@@ -126,10 +44,15 @@ export default function BlogEventsList() {
                 <Navbar />
                 <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 pt-24">
                     <div className="text-center py-12">
-                        <p className="text-gray-600 text-lg">Aucun événement disponible pour le moment.</p>
+                        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                            Événements de la Grande Classe
+                        </h1>
+                        <p className="text-gray-600 text-lg mb-8">
+                            Aucun événement disponible pour le moment.
+                        </p>
                         <Link 
                             href="/"
-                            className="mt-4 inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                            className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
                         >
                             Retour à l'accueil
                         </Link>
@@ -162,15 +85,17 @@ export default function BlogEventsList() {
                             className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"
                         >
                             {/* Image de l'article */}
-                            <div className="relative h-48 overflow-hidden">
-                                <Image
-                                    src={event.image}
-                                    alt={event.title}
-                                    fill
-                                    className="object-cover transition-transform duration-300 hover:scale-105"
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                />
-                            </div>
+                            {event.image && (
+                                <div className="relative h-48 overflow-hidden">
+                                    <Image
+                                        src={event.image}
+                                        alt={event.title}
+                                        fill
+                                        className="object-cover transition-transform duration-300 hover:scale-105"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    />
+                                </div>
+                            )}
 
                             {/* Contenu de l'article */}
                             <div className="p-6">
@@ -179,16 +104,16 @@ export default function BlogEventsList() {
                                     {event.title}
                                 </h2>
 
-                                {/* Extrait */}
+                                {/* Extrait du contenu */}
                                 <p className="text-gray-600 mb-4 leading-relaxed">
-                                    {truncateText(event.summary)}
+                                    {truncateText(event.content, 60)}
                                 </p>
 
                                 {/* Métadonnées de l'événement */}
                                 <div className="mb-4 text-sm text-gray-500">
                                     <div className="flex items-center">
                                         <Calendar className="w-4 h-4 mr-2 text-blue-500 flex-shrink-0" />
-                                        <span>{formatDate(event.date)}</span>
+                                        <span>{formatDate(event.createdAt)}</span>
                                     </div>
                                 </div>
 
@@ -205,20 +130,6 @@ export default function BlogEventsList() {
                             </div>
                         </article>
                     ))}
-                </div>
-
-                {/* Pagination */}
-                <div className="text-center mt-12">
-                    <button 
-                        type="button"
-                        className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-8 rounded-lg transition-colors duration-200 cursor-pointer"
-                        onClick={() => {
-                            // Logique pour charger plus d'articles
-                            console.log('Charger plus d\'articles');
-                        }}
-                    >
-                        Charger plus d'articles
-                    </button>
                 </div>
             </main>
             <Footer />

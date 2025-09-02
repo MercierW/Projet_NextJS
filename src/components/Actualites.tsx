@@ -1,42 +1,30 @@
-'use client';
-
-import React, { useState, useEffect } from "react";
-import { Calendar, ArrowRight, Newspaper, Users, Lightbulb } from "lucide-react";
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import React from "react";
+import { Calendar, ArrowRight } from "lucide-react";
 import Link from 'next/link';
+import Image from 'next/image';
+import { prisma } from '@/lib/db';
+import type { Actualite } from '@prisma/client';
 
-interface ActualiteData {
-  id: number;
-  date: string;
-  title: string;
-  summary: string;
-  link: string;
-  image: string;
-  slug: string; // Ajout du slug dans l'interface
+// Utiliser le type généré par Prisma (plus sûr)
+async function getActualites(): Promise<Actualite[]> {
+  try {
+    const actualites = await prisma.actualite.findMany({
+      take: 6, // Limiter à 6 pour l'aperçu
+      orderBy: { createdAt: 'desc' }
+    });
+    
+    return actualites;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des actualités:', error);
+    return [];
+  }
 }
 
-export default function Actualites() {
-  const [actualites, setActualites] = useState<ActualiteData[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const supabase = createClientComponentClient();
-
-  // Fonction pour générer un slug à partir du titre
-  const generateSlug = (title: string) => {
-    return title
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '') // Supprimer les accents
-      .replace(/[^a-z0-9\s-]/g, '') // Garder seulement lettres, chiffres, espaces et tirets
-      .trim()
-      .replace(/\s+/g, '-') // Remplacer espaces par tirets
-      .replace(/-+/g, '-'); // Éviter les tirets multiples
-  };
+export default async function Actualites() {
+  const actualites = await getActualites();
 
   // Fonction pour formatter la date
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
+  const formatDate = (date: Date) => {
     return date.toLocaleDateString('fr-FR', {
       year: 'numeric',
       month: 'long',
@@ -44,78 +32,23 @@ export default function Actualites() {
     });
   };
 
-  // Récupération des données depuis Supabase
-  useEffect(() => {
-    const fetchActualites = async () => {
-      try {
-        setLoading(true);
-        console.log('🔍 Tentative de récupération des actualités...');
-        
-        const { data, error, count } = await supabase
-          .from('articles') // Remplacez par le nom exact de votre table
-          .select('*', { count: 'exact' })
-          .order('date', { ascending: false });
-
-        console.log('📊 Résultat de la requête:', { data, error, count });
-
-        if (error) {
-          console.error('❌ Erreur Supabase:', error);
-          throw error;
-        }
-
-        console.log('✅ Données récupérées:', data);
-        console.log('📈 Nombre d\'articles:', data?.length);
-        
-        // Ajouter le slug généré à chaque actualité
-        const actualitesWithSlug = data?.map(actu => ({
-          ...actu,
-          slug: generateSlug(actu.title)
-        })) || [];
-        
-        setActualites(actualitesWithSlug);
-      } catch (err) {
-        console.error('💥 Erreur lors du chargement des actualités:', err);
-        setError(err instanceof Error ? err.message : 'Une erreur est survenue');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchActualites();
-  }, [supabase]);
-
-  if (loading) {
-    return (
-      <section className="py-26 px-4 bg-gradient-to-b from-gray-50 via-white to-blue-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Chargement des actualités...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (error) {
-    return (
-      <section className="py-26 px-4 bg-gradient-to-b from-gray-50 via-white to-blue-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center">
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg inline-block">
-              Erreur lors du chargement : {error}
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   if (actualites.length === 0) {
     return (
       <section className="py-26 px-4 bg-gradient-to-b from-gray-50 via-white to-blue-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center">
+            <div className="mb-12">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Quoi de neuf chez{' '}
+                <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                  La Grande Classe{' '}
+                </span>
+                ?
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Découvrez nos dernières actualités, nouveautés et partenariats
+              </p>
+            </div>
             <p className="text-gray-600 text-lg">Aucune actualité disponible pour le moment.</p>
           </div>
         </div>
@@ -148,14 +81,12 @@ export default function Actualites() {
               >
                 {/* Image avec overlay gradient */}
                 <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={actu.image}
+                  <Image
+                    src={actu.image || '/images/default-news.jpg'}
                     alt={actu.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    onError={(e) => {
-                      // Image de fallback en cas d'erreur
-                      e.currentTarget.src = '/images/default-news.jpg';
-                    }}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
                 </div>
@@ -164,22 +95,16 @@ export default function Actualites() {
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center text-gray-500 text-sm mb-3">
                     <Calendar className="w-4 h-4 mr-2" />
-                    {formatDate(actu.date)}
+                    {formatDate(actu.createdAt)}
                   </div>
 
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-indigo-600 transition-colors duration-200">
+                  <h3 className="text-xl text-gray-900 mb-3 line-clamp-2 group-hover:text-indigo-600 transition-colors duration-200">
                     {actu.title}
                   </h3>
 
-                  <p className="text-gray-600 mb-6 line-clamp-3 leading-relaxed flex-grow">
-                    {actu.summary}
-                  </p>
-
-                  {/* CTA Button - Vous pouvez maintenant utiliser soit actu.link soit /actu/${actu.slug} */}
+                  {/* CTA Button - Lien vers la page détail de l'article */}
                   <Link
-                    href={`/actu/${actu.slug}`} // Ou href={`/actu/${actu.slug}`} si vous voulez utiliser des liens internes
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={`/actu/${actu.slug}`}
                     className="inline-flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl group/btn mt-auto"
                   >
                     Lire l'article
