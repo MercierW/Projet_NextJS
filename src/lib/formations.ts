@@ -17,8 +17,8 @@ export const formationThemes = {
           duration: "10 semaines",
           open: "Session Ouverte",
           participants: 15,
-          price: "1 800€",
-          image: "/img_hcr_02.png"
+          image: "/img_hcr_02.png",
+          new: false
         },
         {
           id: 2,
@@ -28,8 +28,8 @@ export const formationThemes = {
           duration: "12 semaines",
           open: "Session Ouverte",
           participants: 14,
-          price: "1 600€",
-          image: "/img_psr_10.png"
+          image: "/img_psr_10.png",
+          new: true
         },
         {
           id: 3,
@@ -39,8 +39,8 @@ export const formationThemes = {
           duration: "14 semaines",
           open: "Session Fermée",
           participants: 12,
-          price: "1 900€",
-          image: "/img_csr.png"
+          image: "/img_csr.png",
+          new: false
         }
       ]
     },
@@ -62,8 +62,8 @@ export const formationThemes = {
           duration: "14 semaines",
           open: "Session Ouverte",
           participants: 12,
-          price: "1 950€",
-          image: "/img_feaa.png"
+          image: "/img_feaa.png",
+          new: false
         },
         {
           id: 5,
@@ -73,8 +73,8 @@ export const formationThemes = {
           duration: "12 semaines",
           open: "Session Ouverte",
           participants: 20,
-          price: "1 500€",
-          image: "/img_ac.png"
+          image: "/img_ac.png",
+          new: true
         },
         {
           id: 6,
@@ -84,8 +84,8 @@ export const formationThemes = {
           duration: "12 semaines",
           open: "Session Fermée",
           participants: 20,
-          price: "1 500€",
-          image: "/img_gcf.png"
+          image: "/img_gcf.png",
+          new: false
         }
       ]
     },
@@ -107,8 +107,8 @@ export const formationThemes = {
           duration: "16 semaines",
           open: "Session Ouverte",
           participants: 10,
-          price: "2 000 €",
-          image: "/img_esf.png"
+          image: "/img_esf.png",
+          new: true
         },
         {
           id: 8,
@@ -118,8 +118,8 @@ export const formationThemes = {
           duration: "10 semaines",
           open: "Session Ouverte",
           participants: 25,
-          price: "1 200€",
-          image: "/img_aepe.png"
+          image: "/img_aepe.png",
+          new: false
         },
         {
           id: 9,
@@ -129,8 +129,8 @@ export const formationThemes = {
           duration: "10 semaines",
           open: "Session Ouverte",
           participants: 25,
-          price: "1 200€",
-          image: "/img_asp.png"
+          image: "/img_asp.png",
+          new: false
         }
       ]
     },
@@ -152,8 +152,8 @@ export const formationThemes = {
           duration: "12 semaines",
           open: "Session Ouverte",
           participants: 20,
-          price: "1 500€",
-          image: "/img_mco.png"
+          image: "/img_mco.png",
+          new: true
         },
         {
           id: 11,
@@ -163,8 +163,8 @@ export const formationThemes = {
           duration: "8 semaines",
           open: "Session Ouverte",
           participants: 25,
-          price: "1 300€",
-          image: "/img_gpa.png"
+          image: "/img_gpa.png",
+          new: false
         },
         {
           id: 12,
@@ -174,8 +174,8 @@ export const formationThemes = {
           duration: "12 semaines",
           open: "Session Ouverte",
           participants: 18,
-          price: "1 800€",
-          image: "/img_rh.png"
+          image: "/img_rh.png",
+          new: false
         }
       ]
     },
@@ -197,8 +197,8 @@ export const formationThemes = {
           duration: "16 semaines",
           open: "Session Ouverte",
           participants: 15,
-          price: "2 000€",
-          image: "/img_cda.png"
+          image: "/img_cda.png",
+          new: true
         },
         {
           id: 14,
@@ -208,8 +208,8 @@ export const formationThemes = {
           duration: "12 semaines",
           open: "Session Ouverte",
           participants: 20,
-          price: "1 800€",
-          image: "/img_cdui.png"
+          image: "/img_cdui.png",
+          new: false
         },
         {
           id: 15,
@@ -219,8 +219,8 @@ export const formationThemes = {
           duration: "14 semaines",
           open: "Session Fermée",
           participants: 15,
-          price: "2 200€",
-          image: "/img_dcc.png"
+          image: "/img_dcc.png",
+          new: false
         }
       ]
     }

@@ -1,10 +1,22 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { slides } from "@/lib/carousel";
+import { formationThemes } from '@/lib/formations';
 import { useCarousel } from "@/lib/hooks/useCarousel";
+import Link from 'next/link';
 
 export default function Carousel() {
+  // Créer un tableau aplati des formations "nouvelles" uniquement avec les informations du thème
+  const allFormations = Object.values(formationThemes).flatMap(theme => 
+    theme.formations
+      .filter(formation => formation.new === true) // Filtrer seulement les nouvelles formations
+      .map(formation => ({
+        ...formation,
+        themeColors: theme.colors,
+        themeTitle: theme.title
+      }))
+  );
+
   const {
     currentSlide,
     isHovered,
@@ -13,14 +25,15 @@ export default function Carousel() {
     prevSlide,
     goToSlide
   } = useCarousel({ 
-    slidesLength: slides.length,
-    autoPlayInterval: 5000 // optionnel, 5000ms par défaut
+    slidesLength: allFormations.length,
+    autoPlayInterval: 5000
   });
 
   return (
     <section className="relative w-full overflow-hidden">
       {/* Background */}
       <div className={`absolute inset-0 bg-sky-50`} />
+      
       {/* Ronds animés autour du carousel */}
       <div className="absolute inset-0 overflow-hidden z-0">
         <motion.div
@@ -99,49 +112,76 @@ export default function Carousel() {
           >
             {/* Slides */}
             <div className="relative h-[600px]">
-              {slides.map((slide, index) => (
+              {allFormations.map((formation, index) => (
                 <div
-                  key={slide.id}
-                  className={`absolute inset-0 transition-all duration-700 ease-in-out transform ${index === currentSlide
+                  key={formation.id}
+                  className={`absolute inset-0 transition-all duration-700 ease-in-out transform ${
+                    index === currentSlide
                       ? 'opacity-100 translate-x-0 scale-100'
                       : index < currentSlide
                         ? 'opacity-0 -translate-x-full scale-95'
                         : 'opacity-0 translate-x-full scale-95'
-                    }`}
+                  }`}
                 >
                   <div className="flex flex-col lg:flex-row h-full">
                     {/* Image Section */}
                     <div className="lg:w-1/2 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40 z-10"></div>
                       <img
-                        src={slide.image}
-                        alt={slide.title}
+                        src={formation.image}
+                        alt={formation.title}
                         className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
                       />
-                      {/* Overlay décoratif */}
-                      <div className={`absolute top-4 left-4 px-4 py-2 rounded-full bg-gradient-to-r ${slide.color} text-white text-sm font-semibold shadow-lg z-20`}>
-                        Formation 2025
+                      {/* Overlay décoratif avec badge de statut */}
+                      <div className={`absolute top-4 left-4 px-4 py-2 rounded-full bg-gradient-to-r ${formation.themeColors.primary} text-white text-sm font-semibold shadow-lg z-20`}>
+                        {formation.themeTitle}
+                      </div>
+                      <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold shadow-lg z-20 ${
+                        formation.open === "Session Ouverte" 
+                          ? "bg-green-500 text-white" 
+                          : "bg-red-500 text-white"
+                      }`}>
+                        {formation.open}
                       </div>
                     </div>
 
-                    {/* Content Section - Ajustement de la largeur pour éviter les flèches */}
-                    <div className="lg:w-1/2 p-8 lg:pl-12 lg:pr-20 flex flex-col justify-center">
+                    {/* Content Section */}
+                    <div className="lg:w-1/2 p-8 lg:pl-12 lg:pr-20 flex flex-col justify-center relative">
+                      {/* Badge NOUVEAU */}
+                      <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-red-500 text-white text-xs font-bold shadow-lg z-20 animate-pulse">
+                        NOUVEAU
+                      </div>
                       <div className="space-y-6">
                         <div>
-                          <h3 className={`text-4xl lg:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r ${slide.color} leading-tight`}>
-                            {slide.title}
+                          <h3 className={`text-3xl lg:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r ${formation.themeColors.primary} leading-tight`}>
+                            {formation.title}
                           </h3>
-                          <div className={`w-24 h-1 bg-gradient-to-r ${slide.color} rounded-full mb-6`}></div>
+                          <div className={`w-24 h-1 bg-gradient-to-r ${formation.themeColors.primary} rounded-full mb-6`}></div>
                         </div>
 
                         <p className="text-gray-700 text-lg leading-relaxed">
-                          {slide.description}
+                          {formation.description}
                         </p>
 
+                        {/* Informations de la formation */}
+                        <div className="grid grid-cols-2 gap-4 py-4">
+                          <div className="flex items-center space-x-2">
+                            <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${formation.themeColors.primary}`}></div>
+                            <span className="text-sm text-gray-600">Durée: <strong>{formation.duration}</strong></span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${formation.themeColors.primary}`}></div>
+                            <span className="text-sm text-gray-600">Places: <strong>{formation.participants}</strong></span>
+                          </div>
+                        </div>
+
                         <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
-                          <button className={`px-8 py-3 bg-gradient-to-r ${slide.color} text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer`}>
+                          <Link
+                            href={`/formations/${formation.slug}`}
+                            className={`px-8 py-3 bg-gradient-to-r ${formation.themeColors.primary} text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center`}
+                          >
                             En savoir plus
-                          </button>
+                          </Link>
                           <button className="px-8 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-full hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 cursor-pointer">
                             Télécharger la brochure
                           </button>
@@ -175,18 +215,20 @@ export default function Carousel() {
 
           {/* Dots Navigation */}
           <div className="flex justify-center mt-8 space-x-3">
-            {slides.map((slide, index) => (
+            {allFormations.map((formation, index) => (
               <button
-                key={index}
+                key={formation.id}
                 onClick={() => goToSlide(index)}
                 className="group relative"
+                title={formation.title}
               >
-                <div className={`w-4 h-4 rounded-full transition-all duration-300 ${index === currentSlide
-                    ? `bg-gradient-to-r ${slide.color} shadow-lg scale-125`
+                <div className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                  index === currentSlide
+                    ? `bg-gradient-to-r ${formation.themeColors.primary} shadow-lg scale-125`
                     : 'bg-white/60 hover:bg-white/80 hover:scale-110'
-                  }`} />
+                }`} />
                 {index === currentSlide && (
-                  <div className={`absolute inset-0 w-4 h-4 rounded-full bg-gradient-to-r ${slide.color} animate-ping opacity-30`} />
+                  <div className={`absolute inset-0 w-4 h-4 rounded-full bg-gradient-to-r ${formation.themeColors.primary} animate-ping opacity-30`} />
                 )}
               </button>
             ))}
@@ -195,9 +237,9 @@ export default function Carousel() {
           {/* Progress Bar */}
           <div className="mt-6 w-full bg-white/30 rounded-full h-1 overflow-hidden">
             <div
-              className={`h-full bg-gradient-to-r ${slides[currentSlide].color} transition-all duration-300 rounded-full`}
+              className={`h-full bg-gradient-to-r ${allFormations[currentSlide]?.themeColors.primary || 'from-orange-400 to-red-500'} transition-all duration-300 rounded-full`}
               style={{
-                width: `${((currentSlide + 1) / slides.length) * 100}%`,
+                width: `${((currentSlide + 1) / allFormations.length) * 100}%`,
                 animation: isHovered ? 'none' : 'pulse 2s infinite'
               }}
             />

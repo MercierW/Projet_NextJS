@@ -68,7 +68,7 @@ export default function FormationPage() {
                 {/* Grille des formations */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {theme.formations.map((formation) => (
-                    <div key={formation.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div key={formation.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group flex flex-col">
                       <div className="h-48 relative overflow-hidden">
                         {/* Image avec effet de zoom */}
                         <Image
@@ -87,11 +87,11 @@ export default function FormationPage() {
                         </div>
                       </div>
 
-                      <div className="p-6">
+                      <div className="p-6 flex flex-col flex-1">
                         <h3 className="text-xl font-bold text-gray-900 mb-3">
                           {formation.title}
                         </h3>
-                        <p className="text-gray-600 mb-4 line-clamp-3">
+                        <p className="text-gray-600 mb-4 line-clamp-3 flex-1">
                           {formation.description}
                         </p>
 
@@ -110,10 +110,7 @@ export default function FormationPage() {
                           </div>
                         </div>
 
-                        <div className="flex items-center justify-between">
-                          <div className={`text-2xl font-bold ${theme.colors.text}`}>
-                            {formation.price}
-                          </div>
+                        <div className="flex justify-end mt-auto">
                           <Link
                             href={`/formations/${formation.slug}`}
                             className={`${theme.colors.button} text-white px-6 py-2 rounded-lg font-medium transition-colors cursor-pointer`}

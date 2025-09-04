@@ -45,7 +45,7 @@ export default function Navbar() {
                 href="/formations"
                 className="relative inline-block text-white py-2 text-sm font-medium group hover:text-gray-200 transition-colors"
               >
-                Formation
+                Formations
                 <span className="absolute left-1/2 bottom-0 h-0.5 bg-white w-0 transition-all duration-300 group-hover:w-full transform -translate-x-1/2"></span>
               </Link>
 
