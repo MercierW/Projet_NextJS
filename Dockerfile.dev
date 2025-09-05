@@ -1,0 +1,29 @@
+# Dockerfile pour le développement
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Installation des dépendances système
+RUN apk add --no-cache libc6-compat
+
+# Copie des fichiers de dépendances
+COPY package.json package-lock.json* ./
+
+# Installation des dépendances
+RUN npm ci
+
+# Copie du reste des fichiers
+COPY . .
+
+# Copie et rendre exécutable le script d'entrypoint
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Exposition du port
+EXPOSE 3000
+
+# Script d'entrypoint pour setup automatique
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+# Commande par défaut
+CMD ["npm", "run", "dev"]

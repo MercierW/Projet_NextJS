@@ -1,0 +1,55 @@
+services:
+  # Application Next.js
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${APP_PORT}:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - DATABASE_URL=${DATABASE_URL}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
+      - AUTO_SEED=${AUTO_SEED}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      # Pour le développement, vous pouvez décommenter ces lignes :
+      # - .:/app
+      # - /app/node_modules
+      # - /app/.next
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # Base de données PostgreSQL
+  db:
+    image: postgres:15-alpine
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # Service pour les migrations Prisma (automatique maintenant via entrypoint)
+  # migrate: service supprimé - tout est automatique
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge
