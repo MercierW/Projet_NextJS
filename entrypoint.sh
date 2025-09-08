@@ -56,10 +56,19 @@ fi
 
 echo "✅ Database setup complete!"
 
-# Optionnel : Seed en développement
+# Seed UNIQUEMENT si base vide ET AUTO_SEED=true
 if [ "$NODE_ENV" != "production" ] && [ "$AUTO_SEED" = "true" ]; then
-  echo "🌱 Seeding database..."
-  npx prisma db seed || echo "⚠️ No seed script found or seeding failed"
+  # Vérifier si des données existent déjà
+  existing_data=$(npx prisma db execute --sql "SELECT COUNT(*) FROM \"Actualite\";" 2>/dev/null | grep -o '[0-9]*' | head -1)
+  
+  if [ "$existing_data" = "0" ] || [ -z "$existing_data" ]; then
+    echo "🌱 Database is empty, seeding with test data..."
+    npx prisma db seed || echo "⚠️ No seed script found or seeding failed"
+  else
+    echo "📊 Database already contains $existing_data actualités, skipping seed"
+  fi
+else
+  echo "🚫 Auto-seed disabled or production mode"
 fi
 
 echo "🎉 Starting the application..."
