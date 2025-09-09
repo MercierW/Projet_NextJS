@@ -257,3 +257,8 @@ Pour le déploiement en production :
 - [Documentation Docker](https://docs.docker.com/)
 - [Documentation Next.js avec Docker](https://nextjs.org/docs/deployment#docker-image)
 - [Documentation Prisma](https://www.prisma.io/docs/)
+
+
+## Ouvrir une commande dans un termnal à distance
+
+- ssh root@161.87.92.635
