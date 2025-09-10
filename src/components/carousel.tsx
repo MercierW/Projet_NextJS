@@ -32,7 +32,7 @@ export default function Carousel() {
   return (
     <section className="relative w-full overflow-hidden">
       {/* Background */}
-      <div className={`absolute inset-0 bg-sky-50`} />
+      <div className="absolute inset-0 bg-sky-50" />
       
       {/* Ronds animés autour du carousel */}
       <div className="absolute inset-0 overflow-hidden z-0">
@@ -81,7 +81,7 @@ export default function Carousel() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header avec animation */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center p-2 bg-white/20 backdrop-blur-sm rounded-full mb-6">
+          <div className="inline-flex items-center justify-center p-2 bg-white bg-opacity-20 backdrop-blur-sm rounded-full mb-6">
             <div className="flex items-center space-x-2 px-4 py-2 bg-white rounded-full shadow-lg">
               <div className="w-2 h-2 bg-gradient-to-r from-orange-400 to-pink-400 rounded-full animate-pulse"></div>
               <span className="text-sm font-medium text-gray-700 tracking-wide">NOUVEAUTÉS 2025</span>
@@ -106,7 +106,7 @@ export default function Carousel() {
         {/* Carousel Container */}
         <div className="relative">
           <div
-            className="relative overflow-hidden rounded-3xl shadow-2xl bg-white/10 backdrop-blur-md border border-white/20"
+            className="relative overflow-hidden rounded-3xl shadow-2xl bg-white bg-opacity-10 backdrop-blur-md border border-white border-opacity-20"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -126,7 +126,7 @@ export default function Carousel() {
                   <div className="flex flex-col lg:flex-row h-full">
                     {/* Image Section */}
                     <div className="lg:w-1/2 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40 z-10"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-transparent to-gray-900 opacity-30 z-10"></div>
                       <img
                         src={formation.image}
                         alt={formation.title}
@@ -196,7 +196,7 @@ export default function Carousel() {
             {/* Navigation Arrows */}
             <button
               onClick={prevSlide}
-              className="absolute left-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 z-30 group cursor-pointer"
+              className="absolute left-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white bg-opacity-90 backdrop-blur-sm hover:bg-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 z-30 group cursor-pointer"
             >
               <svg className="w-6 h-6 text-gray-700 mx-auto group-hover:text-gray-900 transform group-hover:-translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
@@ -205,7 +205,7 @@ export default function Carousel() {
 
             <button
               onClick={nextSlide}
-              className="absolute right-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 z-30 group cursor-pointer"
+              className="absolute right-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white bg-opacity-90 backdrop-blur-sm hover:bg-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 z-30 group cursor-pointer"
             >
               <svg className="w-6 h-6 text-gray-700 mx-auto group-hover:text-gray-900 transform group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
@@ -225,7 +225,7 @@ export default function Carousel() {
                 <div className={`w-4 h-4 rounded-full transition-all duration-300 ${
                   index === currentSlide
                     ? `bg-gradient-to-r ${formation.themeColors.primary} shadow-lg scale-125`
-                    : 'bg-white/60 hover:bg-white/80 hover:scale-110'
+                    : 'bg-white bg-opacity-60 hover:bg-white hover:bg-opacity-80 hover:scale-110'
                 }`} />
                 {index === currentSlide && (
                   <div className={`absolute inset-0 w-4 h-4 rounded-full bg-gradient-to-r ${formation.themeColors.primary} animate-ping opacity-30`} />
@@ -233,24 +233,6 @@ export default function Carousel() {
               </button>
             ))}
           </div>
-
-          {/* Progress Bar */}
-          <div className="mt-6 w-full bg-white/30 rounded-full h-1 overflow-hidden">
-            <div
-              className={`h-full bg-gradient-to-r ${allFormations[currentSlide]?.themeColors.primary || 'from-orange-400 to-red-500'} transition-all duration-300 rounded-full`}
-              style={{
-                width: `${((currentSlide + 1) / allFormations.length) * 100}%`,
-                animation: isHovered ? 'none' : 'pulse 2s infinite'
-              }}
-            />
-          </div>
-        </div>
-
-        {/* Bottom decorative elements */}
-        <div className="flex justify-center mt-12 space-x-8 opacity-60">
-          <div className="w-2 h-2 bg-gradient-to-r from-orange-400 to-pink-400 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
-          <div className="w-2 h-2 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-          <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
         </div>
       </div>
     </section>

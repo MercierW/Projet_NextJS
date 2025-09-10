@@ -5,6 +5,13 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  safelist: [
+    'from-orange-400", "to-red-500',
+    'from-blue-400", "to-indigo-500',
+    'from-green-400", "to-emerald-500',
+    'from-purple-400", "to-pink-500',
+    'from-cyan-400", "to-blue-500',
+  ],
   theme: {
     extend: {
       keyframes: {

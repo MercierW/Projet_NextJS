@@ -7,7 +7,7 @@ import { formations } from "@/lib/formationsPhares";
 
 export default function NosFormationsPhares() {
   return (
-    <section className="relative py-26 px-4 bg-gradient-to-b from-blue-50 via-white to-gray-50 overflow-hidden">
+    <section className="relative py-28 px-4 bg-gradient-to-b from-sky-50 via-white to-gray-50 overflow-hidden">
       {/* Formes décoratives de fond */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Cercles flottants */}
@@ -23,8 +23,8 @@ export default function NosFormationsPhares() {
         <div className="text-center mb-12">
           <div className="relative inline-block">
             {/* Effet de backdrop pour le titre */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-teal-100 via-white to-lime-100 rounded-2xl opacity-50 blur-sm"></div>
-            <h2 className="relative text-4xl md:text-5xl font-extrabold text-center mb-4 tracking-wide px-2">
+            <div className="absolute -inset-4 rounded-2xl opacity-50 blur-sm"></div>
+            <h2 className="relative text-4xl md:text-5xl font-extrabold text-center mb-6 tracking-wide px-2">
               <span className="text-gray-800">
                 Nos{" "}
               </span>
@@ -32,8 +32,6 @@ export default function NosFormationsPhares() {
                 <span className="bg-gradient-to-r from-teal-600 via-emerald-500 to-lime-600 bg-clip-text text-transparent font-black">
                   formations
                 </span>
-                {/* Effet de brillance subtil */}
-                <div className="absolute inset-0 bg-gradient-to-r from-teal-400 via-emerald-400 to-lime-400 bg-clip-text text-transparent opacity-0 animate-pulse"></div>
               </span>
               <span className="text-gray-800">
                 {" "}phares

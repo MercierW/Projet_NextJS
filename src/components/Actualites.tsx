@@ -57,7 +57,7 @@ export default async function Actualites() {
   }
 
   return (
-    <section className="py-26 px-4 bg-gradient-to-b from-gray-50 via-white to-blue-50 overflow-x-hidden">
+    <section className="py-28 px-4 bg-gradient-to-b from-gray-50 via-white to-blue-50 overflow-x-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">

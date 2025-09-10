@@ -49,7 +49,7 @@ export const formationThemes = {
       colors: {
         primary: "from-blue-400 to-indigo-500",
         accent: "bg-blue-100 text-blue-800",
-        button: "bg-blue-600 hover:bg-blue-700",
+        button: "bg-blue-600 hover:bg-blue-500",
         text: "text-blue-600",
         badge: "bg-blue-600"
       },
