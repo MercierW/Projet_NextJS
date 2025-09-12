@@ -13,7 +13,7 @@ export default function FormationPage() {
       <Navbar />
       <main>
         {/* Hero Section */}
-        <section className="py-46">
+        <section className="py-48">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
               <BookOpen className="w-4 h-4" />
@@ -50,7 +50,7 @@ export default function FormationPage() {
 
         {/* Formations par Thème */}
         <section className="">
-          <div className="width-full">
+          <div className="w-full">
             {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> */}
             {Object.entries(formationThemes).map(([themeKey, theme]) => (
               <div
@@ -81,8 +81,12 @@ export default function FormationPage() {
 
                         {/* Badge niveau */}
                         <div className="absolute bottom-4 left-4">
-                          <span className={`inline-block ${theme.colors.badge} bg-opacity-90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium text-white`}>
-                            {formation.open}
+                          <span className={`inline-block backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium text-white ${
+                            formation.open 
+                              ? 'bg-green-500 bg-opacity-90' 
+                              : 'bg-red-500 bg-opacity-90'
+                          }`}>
+                            {formation.open ? 'Session ouverte' : 'Session fermée'}
                           </span>
                         </div>
                       </div>

@@ -15,7 +15,7 @@ export const formationThemes = {
           title: "Commercialisation et Services en Hôtel-Café-Restaurant",
           description: "Apprenez les bases du service en salle, de l'accueil client et des bonnes pratiques en hôtellerie et restauration.",
           duration: "10 semaines",
-          open: "Session Ouverte",
+          open: true,
           participants: 15,
           image: "/img_hcr_02.png",
           new: false
@@ -26,7 +26,7 @@ export const formationThemes = {
           title: "Production et Service en Restauration",
           description: "Apprenez les techniques de préparation, de remise en température et de service en restauration collective ou rapide.",
           duration: "12 semaines",
-          open: "Session Ouverte",
+          open: true,
           participants: 14,
           image: "/img_psr_10.png",
           new: true
@@ -37,7 +37,7 @@ export const formationThemes = {
           title: "Commercialisation et Services en Restauration",
           description: "Développez vos compétences en accueil client, service en salle, techniques de vente et mise en valeur de l'offre de restauration.",
           duration: "14 semaines",
-          open: "Session Fermée",
+          open: false,
           participants: 12,
           image: "/img_csr.png",
           new: false
@@ -60,7 +60,7 @@ export const formationThemes = {
           title: "Employé(e) Administratif(ve) et d'Accueil",
           description: "Apprenez les bases de l'accueil, de la gestion administrative et de la communication professionnelle.",
           duration: "14 semaines",
-          open: "Session Ouverte",
+          open: true,
           participants: 12,
           image: "/img_feaa.png",
           new: false
@@ -71,7 +71,7 @@ export const formationThemes = {
           title: "Assistant(e) Comptable",
           description: "Acquérez les bases de la comptabilité, la gestion des écritures et le suivi administratif des comptes.",
           duration: "12 semaines",
-          open: "Session Ouverte",
+          open: true,
           participants: 20,
           image: "/img_ac.png",
           new: true
@@ -82,7 +82,7 @@ export const formationThemes = {
           title: "Gestion Comptable et Fiscale",
           description: "Maîtrisez les principes de la comptabilité, la fiscalité d'entreprise et les obligations légales.",
           duration: "12 semaines",
-          open: "Session Fermée",
+          open: false,
           participants: 20,
           image: "/img_gcf.png",
           new: false
@@ -105,7 +105,7 @@ export const formationThemes = {
           title: "Économie Sociale et Familiale",
           description: "Formez-vous à l'accompagnement des publics dans les domaines du quotidien : alimentation, logement et insertion sociale.",
           duration: "16 semaines",
-          open: "Session Ouverte",
+          open: true,
           participants: 10,
           image: "/img_esf.png",
           new: true
@@ -116,7 +116,7 @@ export const formationThemes = {
           title: "Accompagnant Éducatif Petite Enfance",
           description: "Préparez-vous au CAP AEPE et développez vos compétences en accueil, soins et éveil du jeune enfant.",
           duration: "10 semaines",
-          open: "Session Ouverte",
+          open: true,
           participants: 25,
           image: "/img_aepe.png",
           new: false
@@ -127,7 +127,7 @@ export const formationThemes = {
           title: "Accompagnement et Soins à la Personne",
           description: "Formez-vous aux gestes professionnels pour accompagner les personnes en perte d'autonomie au quotidien.",
           duration: "10 semaines",
-          open: "Session Ouverte",
+          open: true,
           participants: 25,
           image: "/img_asp.png",
           new: false
@@ -150,7 +150,7 @@ export const formationThemes = {
           title: "Management Commercial Opérationnel",
           description: "Développez vos compétences en gestion, vente et animation d'une unité commerciale",
           duration: "12 semaines",
-          open: "Session Ouverte",
+          open: true,
           participants: 20,
           image: "/img_mco.png",
           new: true
@@ -161,7 +161,7 @@ export const formationThemes = {
           title: "Gestion de Projet Agile",
           description: "Maîtrisez les méthodologies Scrum et Kanban pour gérer vos projets efficacement",
           duration: "8 semaines",
-          open: "Session Ouverte",
+          open: true,
           participants: 25,
           image: "/img_gpa.png",
           new: false
@@ -172,7 +172,7 @@ export const formationThemes = {
           title: "Ressources Humaines et Recrutement",
           description: "Techniques de recrutement, gestion des talents et développement RH",
           duration: "12 semaines",
-          open: "Session Ouverte",
+          open: true,
           participants: 18,
           image: "/img_rh.png",
           new: false
@@ -180,7 +180,7 @@ export const formationThemes = {
       ]
     },
     programmation: {
-      title: "Programmation & Design",
+      title: "Programmation",
       colors: {
         primary: "from-cyan-400 to-blue-500",
         accent: "bg-cyan-100 text-cyan-800",
@@ -195,7 +195,7 @@ export const formationThemes = {
           title: "Concepteur Développeur d'Applications",
           description: "Maîtrisez la conception, le développement et la maintenance d'applications web et mobiles",
           duration: "16 semaines",
-          open: "Session Ouverte",
+          open: true,
           participants: 15,
           image: "/img_cda.png",
           new: true
@@ -206,7 +206,7 @@ export const formationThemes = {
           title: "Concepteur Designer UI",
           description: "Créez des interfaces utilisateur modernes et intuitives avec Figma et les dernières tendances",
           duration: "12 semaines",
-          open: "Session Ouverte",
+          open: true,
           participants: 20,
           image: "/img_cdui.png",
           new: false
@@ -217,7 +217,7 @@ export const formationThemes = {
           title: "DevOps et Cloud Computing",
           description: "Maîtrisez Docker, Kubernetes, AWS et l'automatisation des déploiements",
           duration: "14 semaines",
-          open: "Session Fermée",
+          open: false,
           participants: 15,
           image: "/img_dcc.png",
           new: false

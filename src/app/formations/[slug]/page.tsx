@@ -3,6 +3,7 @@ import Navbar from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { notFound } from "next/navigation";
 import { formationThemes } from "@/lib/formations";
+import Link from 'next/link';
 
 type Params = {
   params: Promise<{
@@ -134,8 +135,8 @@ export default async function FormationDetail({ params }: Params) {
                           </svg>
                           <div>
                             <p className="text-sm text-gray-500">Statut</p>
-                            <p className={`font-semibold ${formation.open === "Session Ouverte" ? "text-green-600" : "text-red-600"}`}>
-                              {formation.open}
+                            <p className={`${formation.open ? 'text-green-500' : 'text-red-500'}`}>
+                              {formation.open ? 'Session ouverte' : 'Session fermée'}
                             </p>
                           </div>
                         </div>
@@ -144,9 +145,11 @@ export default async function FormationDetail({ params }: Params) {
 
                     {/* CTA Buttons */}
                     <div className="space-y-4">
-                      <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 px-6 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer">
+                      <Link 
+                      href={`/contact`}
+                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 px-6 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer block text-center">
                         S&apos;inscrire maintenant
-                      </button>
+                      </Link>
                       
                       <button className="w-full border-2 border-gray-300 text-gray-700 font-semibold py-4 px-6 rounded-xl hover:border-blue-600 hover:text-blue-600 transition-all duration-300 cursor-pointer">
                         Demander des informations
@@ -178,7 +181,7 @@ export default async function FormationDetail({ params }: Params) {
         </div>
 
         {/* CTA Section */}
-        <section className="py-18 bg-gradient-to-r from-blue-600 to-purple-600">
+        <section className="py-24 bg-gradient-to-r from-blue-600 to-purple-600">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Prêt à commencer votre formation ?

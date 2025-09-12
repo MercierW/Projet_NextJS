@@ -111,7 +111,7 @@ export default function Carousel() {
             onMouseLeave={() => setIsHovered(false)}
           >
             {/* Slides */}
-            <div className="relative h-[600px]">
+            <div className="relative h-[37.5rem] max-[1024px]:h-[45rem] max-[850px]:h-[45rem] max-[460px]:h-[50rem]">
               {allFormations.map((formation, index) => (
                 <div
                   key={formation.id}
@@ -125,15 +125,15 @@ export default function Carousel() {
                 >
                   <div className="flex flex-col lg:flex-row h-full">
                     {/* Image Section */}
-                    <div className="lg:w-1/2 relative overflow-hidden">
+                    <div className="lg:w-1/2 relative overflow-hidden max-[1024px]:h-[20rem] max-[460px]:h-[15rem]">
                       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-transparent to-gray-900 opacity-30 z-10"></div>
                       <img
                         src={formation.image}
                         alt={formation.title}
-                        className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
+                        className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700  max-[1024px]:object-[center_15%] max-[850px]:object-[center_10%]"
                       />
                       {/* Overlay décoratif avec badge de statut */}
-                      <div className={`absolute top-4 left-4 px-4 py-2 rounded-full bg-gradient-to-r ${formation.themeColors.primary} text-white text-sm font-semibold shadow-lg z-20`}>
+                      <div className={`absolute top-4 left-4 px-4 py-2 rounded-full bg-gradient-to-r ${formation.themeColors.primary} text-white text-sm font-semibold shadow-lg z-20 max-[460px]:text-[0.5rem]`}>
                         {formation.themeTitle}
                       </div>
                       <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold shadow-lg z-20 ${
@@ -153,7 +153,7 @@ export default function Carousel() {
                       </div>
                       <div className="space-y-6">
                         <div>
-                          <h3 className={`text-3xl lg:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r ${formation.themeColors.primary} leading-tight`}>
+                          <h3 className={`text-3xl lg:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r ${formation.themeColors.primary} leading-tight max-[460px]:text-[1.5rem] max-[460px]:mt-4`}>
                             {formation.title}
                           </h3>
                           <div className={`w-24 h-1 bg-gradient-to-r ${formation.themeColors.primary} rounded-full mb-6`}></div>
@@ -193,10 +193,10 @@ export default function Carousel() {
               ))}
             </div>
 
-            {/* Navigation Arrows */}
+            {/* Navigation Arrows - Repositionnées pour éviter le conflit avec les badges */}
             <button
               onClick={prevSlide}
-              className="absolute left-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white bg-opacity-90 backdrop-blur-sm hover:bg-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 z-30 group cursor-pointer"
+              className="absolute left-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white bg-opacity-90 backdrop-blur-sm hover:bg-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 z-30 group cursor-pointer max-[850px]:left-4 max-[1024px]:top-1/4 max-[850px]:top-1/4"
             >
               <svg className="w-6 h-6 text-gray-700 mx-auto group-hover:text-gray-900 transform group-hover:-translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
@@ -205,7 +205,7 @@ export default function Carousel() {
 
             <button
               onClick={nextSlide}
-              className="absolute right-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white bg-opacity-90 backdrop-blur-sm hover:bg-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 z-30 group cursor-pointer"
+              className="absolute right-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white bg-opacity-90 backdrop-blur-sm hover:bg-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 z-30 group cursor-pointer max-[850px]:right-4 max-[1024px]:top-1/4 max-[850px]:top-1/4"
             >
               <svg className="w-6 h-6 text-gray-700 mx-auto group-hover:text-gray-900 transform group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />

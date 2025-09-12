@@ -50,7 +50,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <Navbar />
-      <main className="min-h-screen bg-gradient-to-br from-blue-50 to-violet-200 py-30 px-4 sm:px-8 lg:px-24">
+      <main className="bg-gradient-to-br from-blue-50 to-violet-200 py-48 px-4 sm:px-8 lg:px-24">
         <section className="max-w-3xl mx-auto">
           <h1 className="text-4xl font-bold text-violet-800 mb-4">Nous contacter</h1>
           <p className="text-gray-600 text-lg mb-12">
@@ -183,7 +183,7 @@ export default function ContactPage() {
 
             <button
               type="submit"
-              className="w-full bg-violet-400 text-white py-3 rounded-xl font-semibold hover:bg-violet-800 transition duration-300 tracking-widest cursor-pointer transform hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full bg-violet-400 text-white py-3 rounded-xl font-semibold hover:bg-violet-500 transition duration-300 tracking-widest cursor-pointer transform hover:scale-[1.02] active:scale-[0.98]"
             >
               Envoyer ma demande
             </button>

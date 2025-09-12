@@ -66,7 +66,7 @@ export default async function BlogEventsList() {
     return (
         <div className="min-h-screen">
             <Navbar />
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 pt-24">
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28">
                 {/* En-tête */}
                 <div className="text-center mb-12">
                     <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -100,7 +100,7 @@ export default async function BlogEventsList() {
                             {/* Contenu de l'article */}
                             <div className="p-6">
                                 {/* Titre */}
-                                <h2 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
+                                <h2 className="text-xl font-bold text-blue-600 mb-3">
                                     {event.title}
                                 </h2>
 

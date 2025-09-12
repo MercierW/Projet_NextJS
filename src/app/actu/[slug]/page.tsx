@@ -127,7 +127,7 @@ export default async function ActualitePage({ params }: ActualitePageProps) {
                                     href="/actu"
                                     className="flex-1 inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors"
                                 >
-                                    Voir plus d'articles
+                                    Voir d'autres d'articles
                                 </Link>
                                 <Link
                                     href="/"
