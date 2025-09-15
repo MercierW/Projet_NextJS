@@ -45,7 +45,7 @@ export default function NosFormationsPhares() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {formations.map((formation, index) => (
-            <Link href={formation.slug} key={index} className="group block">
+            <Link href={`formations/${formation.slug}`} key={index} className="group block">
               <div className="formation-card relative bg-white hover:bg-gradient-to-br hover:from-blue-50 hover:to-teal-50 shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2 h-full flex flex-col border border-gray-100 hover:border-teal-200">
                 {/* Effet de brillance au survol */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-2xl pointer-events-none"></div>
