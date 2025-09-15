@@ -80,10 +80,6 @@ export default function HeroSection(): JSX.Element {
             </span>
           </p>
         </div>
-
-        <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-          Une plateforme d'apprentissage qui accompagne chacun dans son parcours de développement personnel et professionnel.
-        </p>
       </div>
 
       {/* Scroll indicator */}
