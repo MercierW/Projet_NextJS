@@ -1,0 +1,45 @@
+name: CI/CD - Next.js Docker Compose
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /home/nextjs_lgc/mon-projet
+            
+            # Arrêter les conteneurs d'abord
+            docker-compose down
+            
+            # Mettre à jour le code source
+            git fetch --all
+            git reset --hard origin/main
+            git pull origin main  # 👈 Important !
+            
+            # Supprimer l'ancienne image pour forcer le rebuild
+            docker rmi mon-projet_app || true
+            
+            # Rebuild complet avec le nouveau code
+            docker-compose build --no-cache --pull
+            
+            # Redémarrer
+            docker-compose up -d
+            
+            # Vérifier
+            docker-compose ps
+            
+            # Nettoyer
+            docker image prune -f
