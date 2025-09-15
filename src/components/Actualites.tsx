@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { prisma } from '@/lib/db';
 import type { Actualite } from '@prisma/client';
-// Message
+
 // Utiliser le type généré par Prisma (plus sûr)
 async function getActualites(): Promise<Actualite[]> {
   try {

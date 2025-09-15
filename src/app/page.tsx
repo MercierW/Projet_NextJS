@@ -1,7 +1,7 @@
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Carousel from "@/components/Carousel";
+import Carousel_formations from "@/components/Carousel_formation";
 import Actualites from "@/components/Actualites";
 import PartnersCarousel from "@/components/Partners";
 import QualiopiCertification from "@/components/Qualiopi";
@@ -14,7 +14,7 @@ export default function Home() {
       <Navbar />
       <main>
        <Hero />
-       <Carousel />
+       <Carousel_formations />
        <NosFormationsPhares />
        <Actualites />
        <QualiopiCertification />

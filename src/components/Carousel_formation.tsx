@@ -137,11 +137,11 @@ export default function Carousel() {
                         {formation.themeTitle}
                       </div>
                       <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold shadow-lg z-20 ${
-                        formation.open === "Session Ouverte" 
+                        formation.open === true 
                           ? "bg-green-500 text-white" 
                           : "bg-red-500 text-white"
                       }`}>
-                        {formation.open}
+                        {formation.open === true ? "Session ouverte" : "Session fermée"}
                       </div>
                     </div>
 
