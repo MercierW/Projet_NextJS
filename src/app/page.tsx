@@ -5,7 +5,7 @@ import Carousel_formations from "@/components/Carousel_formation";
 import Actualites from "@/components/Actualites";
 import PartnersCarousel from "@/components/Partners";
 import QualiopiCertification from "@/components/Qualiopi";
-import NosFormationsPhares from "@/components/Formations_phares";
+import NosFormationPhare from "@/components/Formation_phare";
 
 
 export default function Home() {
@@ -15,7 +15,7 @@ export default function Home() {
       <main>
        <Hero />
        <Carousel_formations />
-       <NosFormationsPhares />
+       <NosFormationPhare />
        <Actualites />
        <QualiopiCertification />
        <PartnersCarousel />
