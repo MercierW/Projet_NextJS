@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Navbar from "@/components/Nav";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Calendar, ExternalLink } from 'lucide-react';
 import { prisma } from '@/lib/db';

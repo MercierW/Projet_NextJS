@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Navbar from "@/components/Nav";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Calendar, ArrowLeft, Share2 } from 'lucide-react';
 import { prisma } from '@/lib/db';

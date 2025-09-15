@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Navbar from "@/components/Nav";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { notFound } from "next/navigation";
 import { formationThemes } from "@/lib/formations";
