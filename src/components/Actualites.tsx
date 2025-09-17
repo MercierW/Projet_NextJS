@@ -1,28 +1,36 @@
 import React from "react";
-import { Calendar, ArrowRight } from "lucide-react";
 import Link from 'next/link';
 import Image from 'next/image';
 import { prisma } from '@/lib/db';
+import { headers } from 'next/headers';
 import type { Actualite } from '@prisma/client';
+import { Calendar, ArrowRight } from "lucide-react";
 
 // Utiliser le type généré par Prisma (plus sûr)
 async function getActualites(): Promise<Actualite[]> {
+  headers();
   try {
+    console.log("Composant Actualites.tsx ---");
+    console.log("Connexion à la database...");
+    
     const actualites = await prisma.actualite.findMany({
-      take: 6, // Limiter à 6 pour l'aperçu
+      take: 6,
       orderBy: { createdAt: 'desc' }
     });
     
+    console.log("📊 Actualités trouvées avec client direct:", actualites.length);
+    
     return actualites;
   } catch (error) {
-    console.error('Erreur lors de la récupération des actualités:', error);
+    console.log('❌ Erreur lors de la récupération des actualités:', error);
     return [];
   }
 }
 
 export default async function Actualites() {
   const actualites = await getActualites();
-
+  console.log("📦 Actualités reçues dans composant:", actualites.length);
+  
   // Fonction pour formatter la date
   const formatDate = (date: Date) => {
     return date.toLocaleDateString('fr-FR', {
@@ -49,7 +57,6 @@ export default async function Actualites() {
                 Découvrez nos dernières actualités, nouveautés et partenariats
               </p>
             </div>
-            <p className="text-gray-600 text-lg">Aucune actualité disponible pour le moment.</p>
           </div>
         </div>
       </section>
@@ -67,11 +74,9 @@ export default async function Actualites() {
             </span>
             ?
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Découvrez nos dernières actualités, nouveautés et partenariats
-          </p>
         </div>
 
+        {/* Le reste du code reste identique */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {actualites.map((actu) => {
             return (
@@ -79,7 +84,6 @@ export default async function Actualites() {
                 key={actu.id}
                 className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100 relative flex flex-col"
               >
-                {/* Image avec overlay gradient */}
                 <div className="relative h-48 overflow-hidden">
                   <Image
                     src={actu.image || '/images/default-news.jpg'}
@@ -91,7 +95,6 @@ export default async function Actualites() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
                 </div>
 
-                {/* Contenu */}
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center text-gray-500 text-sm mb-3">
                     <Calendar className="w-4 h-4 mr-2" />
@@ -102,7 +105,6 @@ export default async function Actualites() {
                     {actu.title}
                   </h3>
 
-                  {/* CTA Button - Lien vers la page détail de l'article */}
                   <Link
                     href={`/actu/${actu.slug}`}
                     className="inline-flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl group/btn mt-auto"
@@ -112,14 +114,12 @@ export default async function Actualites() {
                   </Link>
                 </div>
 
-                {/* Effet de brillance au hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none overflow-hidden"></div>
               </div>
             );
           })}
         </div>
 
-        {/* Section CTA */}
         <div className="text-center mt-12">
           <Link
             href="/actu"

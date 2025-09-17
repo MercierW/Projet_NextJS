@@ -4,10 +4,11 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Calendar, ArrowLeft, Share2 } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { prisma } from '@/lib/db';
 import type { Actualite } from '@prisma/client';
 import ShareButton from '@/components/ShareButton';
+import { headers } from 'next/headers';
 
 interface ActualitePageProps {
     params: Promise<{
@@ -17,14 +18,16 @@ interface ActualitePageProps {
 
 // Fonction pour récupérer une actualité par slug
 async function getActualiteBySlug(slug: string): Promise<Actualite | null> {
+    headers();
     try {
+        console.log("Page actu [slug] ---");
+        console.log("Connexion à la database...");
         const actualite = await prisma.actualite.findUnique({
             where: { slug }
         });
-        
         return actualite;
     } catch (error) {
-        console.error('Erreur lors de la récupération de l\'actualité:', error);
+        console.error('❌ Erreur lors de la récupération de l\'actualité:', error);
         return null;
     }
 }
@@ -127,13 +130,13 @@ export default async function ActualitePage({ params }: ActualitePageProps) {
                                     href="/actu"
                                     className="flex-1 inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors"
                                 >
-                                    Voir d'autres d'articles
+                                    {`Voir d'autres d'articles`}
                                 </Link>
                                 <Link
                                     href="/"
                                     className="flex-1 inline-flex items-center justify-center px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors"
                                 >
-                                    Retour à l'accueil
+                                    {`Retour à l'accueil`}
                                 </Link>
                             </div>
                         </div>

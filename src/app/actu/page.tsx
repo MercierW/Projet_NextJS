@@ -6,17 +6,21 @@ import Footer from "@/components/Footer";
 import { Calendar, ExternalLink } from 'lucide-react';
 import { prisma } from '@/lib/db';
 import type { Actualite } from '@prisma/client';
+import { headers } from 'next/headers';
 
 // Fonction pour récupérer toutes les actualités
 async function getActualites(): Promise<Actualite[]> {
+    headers();
     try {
+        console.log("Page actu ---");
+        console.log("Connexion à la database...");
         const actualites = await prisma.actualite.findMany({
             orderBy: { createdAt: 'desc' }
         });
-        
+        console.log("📊 Actualités trouvées avec client direct:", actualites.length);
         return actualites;
     } catch (error) {
-        console.error('Erreur lors de la récupération des actualités:', error);
+        console.error('❌ Erreur lors de la récupération des actualités:', error);
         return [];
     }
 }

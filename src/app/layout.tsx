@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 const matangi = Matangi({
-  subsets: ['devanagari', 'latin'],
+  subsets: ['latin'],
   weight: ['400'],
   display: 'swap',
   variable: '--font-matangi',

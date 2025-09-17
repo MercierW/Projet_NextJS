@@ -5,10 +5,15 @@ const nextConfig: NextConfig = {
     eslint: {
     // Désactive ESLint pendant le build
     ignoreDuringBuilds: true,
-  },
+    },
     images: {
-      domains: ['images.unsplash.com'],
-  },
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'images.unsplash.com'
+        }
+      ]
+    }
 };
 
 export default nextConfig;

@@ -20,26 +20,29 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd /home/nextjs_lgc/mon-projet
+
+            # Log du déploiement avec timestamp
+            CURRENT_COMMIT=$(git rev-parse HEAD)
+            DATE=$(date '+%Y-%m-%d %H:%M:%S')
+
+            git fetch --all
+            NEW_COMMIT=$(git rev-parse origin/main)
+
+            echo "[$DATE] Déploiement depuis $CURRENT_COMMIT vers $NEW_COMMIT" >> deploy.log
+
+            git reset --hard origin/main
             
-            # Arrêter les conteneurs d'abord
+            # 🛑 Arrêter seulement l'app (pas la DB)
             docker-compose down
             
-            # Mettre à jour le code source
-            git fetch --all
-            git reset --hard origin/main
-            git pull origin main  # 👈 Important !
+            # 🗑️ Supprimer SEULEMENT l'image de l'app
+            docker rmi mon-projet_app
             
-            # Supprimer l'ancienne image pour forcer le rebuild
-            docker rmi mon-projet_app || true
+            # 🏗️ Rebuild seulement l'app
+            docker-compose build --no-cache --pull app
             
-            # Rebuild complet avec le nouveau code
-            docker-compose build --no-cache --pull
-            
-            # Redémarrer
+            # 🚀 Redémarrer l'app (DB reste intacte)
             docker-compose up -d
             
-            # Vérifier
+            # ✅ Vérifier
             docker-compose ps
-            
-            # Nettoyer
-            docker image prune -f

@@ -51,6 +51,20 @@ Cette configuration Docker vous permet de lancer votre application Next.js avec 
 
 ## 🚀 Démarrage rapide
 
+## Commandes essentielles Docker
+
+# Stopper les conteneurs
+- docker compose down
+
+# Supprimer l'image de l'app pour forcer une reconstruction complète
+- docker rmi mon-projet_app
+
+# Rebuilder avec --no-cache pour tout refaire proprement
+- docker compose build --no-cache app
+
+# Redémarrer
+- docker compose up -d
+
 ### Prérequis
 
 - Docker et Docker Compose installés
