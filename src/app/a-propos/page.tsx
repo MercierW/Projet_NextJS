@@ -87,11 +87,7 @@ export default function AProposPage() {
                     </div>
                 </section>
             </main>
-
-            {/* Footer toujours au-dessus */}
-            <div className="relative z-20">
-                <Footer />
-            </div>
+            <Footer />
         </div>
     );
 }

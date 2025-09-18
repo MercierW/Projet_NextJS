@@ -13,6 +13,7 @@
     "db:studio": "prisma studio"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.8",
     "@prisma/client": "^6.15.0",
     "@supabase/ssr": "^0.6.1",
     "framer-motion": "^12.23.6",

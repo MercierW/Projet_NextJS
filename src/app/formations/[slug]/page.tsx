@@ -31,7 +31,7 @@ export default async function FormationDetail({ params }: Params) {
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-6xl mx-auto px-6 py-24">
           <div className="text-white">
-            <h1 className="text-5xl font-bold mb-4 leading-tight">{formation.title}</h1>
+            <h1 className="text-5xl font-bold mb-4 leading-tight max-[710px]:text-4xl">{formation.title}</h1>
             <p className="text-xl text-blue-100 max-w-2xl">
               Développez vos compétences avec cette formation professionnelle
             </p>
@@ -146,14 +146,16 @@ export default async function FormationDetail({ params }: Params) {
                     {/* CTA Buttons */}
                     <div className="space-y-4">
                       <Link 
-                      href={`/contact`}
+                      href={`/inscription`}
                       className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 px-6 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer block text-center">
                         S&apos;inscrire maintenant
                       </Link>
                       
-                      <button className="w-full border-2 border-gray-300 text-gray-700 font-semibold py-4 px-6 rounded-xl hover:border-blue-600 hover:text-blue-600 transition-all duration-300 cursor-pointer">
+                      <Link 
+                      href={`/contact`}
+                      className="w-full border-2 border-gray-300 text-gray-700 font-semibold py-4 px-6 rounded-xl hover:border-blue-600 hover:text-blue-600 transition-all duration-300 block text-center cursor-pointer">
                         Demander des informations
-                      </button>
+                      </Link>
                     </div>
 
                     {/* Trust indicators */}

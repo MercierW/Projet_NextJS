@@ -86,8 +86,7 @@ const Contact = () => {
                 <div>
                   <p className="font-medium text-gray-900">Horaires</p>
                   <p className="text-gray-600">
-                    Lun - Ven: 9h00 - 18h00<br />
-                    Sam: 9h00 - 12h00
+                    Lun - Ven: 9h00 - 17h00
                   </p>
                 </div>
               </div>
