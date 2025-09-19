@@ -21,7 +21,7 @@ export default function FormulaireContact() {
         e.preventDefault();
         setStatus(STATUS_MESSAGES.LOADING);
 
-        const res = await fetch('/api/contact', {
+        const res = await fetch('/api/inscription', {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: { 'Content-Type': 'application/json' },
@@ -40,6 +40,9 @@ export default function FormulaireContact() {
         if (status.includes('erreur')) return CSS_CLASSES.STATUS_ERROR;
         return CSS_CLASSES.STATUS_LOADING;
     };
+    const [isFocused, setIsFocused] = useState(false);
+
+    
 
     return (
         <section className="max-w-3xl mx-auto">
@@ -188,7 +191,14 @@ export default function FormulaireContact() {
                             id="naissance"
                             className={CSS_CLASSES.INPUT}
                         />
-                        <label htmlFor="naissance" className={CSS_CLASSES.LABEL_DATE}>
+                        <label 
+                            htmlFor="naissance" 
+                            className={`${CSS_CLASSES.LABEL_DATE} ${
+                                formData.naissance || isFocused
+                                    ? '-translate-y-6 scale-75 text-violet-400 top-0' 
+                                    : 'top-3'
+                            }`}
+                        >
                             Date de naissance
                         </label>
                     </div>
@@ -234,7 +244,7 @@ export default function FormulaireContact() {
                             type="tel"
                             id="telephone"
                             placeholder=" "
-                            pattern="[0-9\s\-\+\(\)]+"
+                            pattern="[0-9\s\-\.\+\(\)]+"
                             className={CSS_CLASSES.INPUT}
                         />
                         <label htmlFor="telephone" className={CSS_CLASSES.LABEL}>

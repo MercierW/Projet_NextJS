@@ -9,18 +9,23 @@ export async function POST(req: Request) {
   const emailBody = `
     Nom : ${body.nom}
     Prénom : ${body.prenom}
+    Âge : ${body.age}
     Email : ${body.email}
+    Adresse : ${body.adresse}
+    Date de naissance : ${body.naissance}
+    Pays de naissance : ${body.pays}
+    Nationalité : ${body.nationalite}
     Téléphone : ${body.telephone}
-    Message : ${body.message}
+    Formation : ${body.formation}
   `;
 
   console.log('📩 Tentative d’envoi avec Resend...');
 
   try {
     const result = await resend.emails.send({
-      from: 'LGC <onboarding@resend.dev>',
+      from: `LGC <onboarding@resend.dev>`,
       to: 'pierre809865@gmail.com',
-      subject: `Demande d'information`,
+      subject: `Demande d'inscription`,
       text: emailBody,
     });
 

@@ -174,7 +174,7 @@ export default function ContactSimple() {
                             type="tel"
                             id="telephone"
                             placeholder=" "
-                            pattern="[0-9\s\-\+\(\)]+"
+                            pattern="[0-9\s\-\.\+\(\)]+"
                             className="peer w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-violet-400 focus:outline-none transition-all duration-200"
                         />
                         <label
